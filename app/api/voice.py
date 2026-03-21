@@ -14,6 +14,25 @@ router = APIRouter()
 call_sessions = {}
 
 
+def _resolve_base_url(request: Request) -> str:
+    """
+    ✅ FIX: Return the correct public base URL.
+    
+    Root cause of the bug:
+    When a call is made from the website (outbound), Twilio calls back
+    the server to get TwiML instructions. The server was building URLs
+    using `request.base_url` which could be an internal/private address
+    (e.g., http://localhost:8000 or a Railway-internal address).
+    Twilio cannot reach these internal URLs, so it gets no audio instructions
+    and the AI connects but says nothing.
+    
+    Fix: Use PUBLIC_URL env variable if set, otherwise fall back to request.base_url.
+    """
+    if settings.PUBLIC_URL and settings.PUBLIC_URL.strip():
+        return settings.PUBLIC_URL.rstrip('/')
+    return str(request.base_url).rstrip('/')
+
+
 @router.post("/voice/incoming")
 async def handle_incoming_call(
     request: Request,
@@ -22,7 +41,7 @@ async def handle_incoming_call(
     To: str = Form(None)
 ):
     """
-    Handle incoming voice calls
+    Handle incoming voice calls (also used as TwiML URL for outbound calls from website)
     """
     print(f"📞 Incoming call from {From} (CallSid: {CallSid})")
     
@@ -33,8 +52,8 @@ async def handle_incoming_call(
             "messages": []
         }
     
-    # Get base URL from request
-    base_url = str(request.base_url).rstrip('/')
+    # ✅ FIX: Use resolved public URL instead of raw request.base_url
+    base_url = _resolve_base_url(request)
     
     # Create greeting response
     twiml = voice_service.create_greeting_response(base_url)
@@ -55,7 +74,8 @@ async def process_voice_input(
     """
     print(f"🎤 Speech received: '{SpeechResult}' (Confidence: {Confidence})")
     
-    base_url = str(request.base_url).rstrip('/')
+    # ✅ FIX: Use resolved public URL instead of raw request.base_url
+    base_url = _resolve_base_url(request)
     
     # Get or create session
     session = call_sessions.get(CallSid, {"from": From, "messages": []})
@@ -134,9 +154,11 @@ async def make_outbound_call(
     message: str = None
 ):
     """
-    Initiate an outbound call
+    Initiate an outbound call from the website dashboard
+    ✅ FIX: Uses PUBLIC_URL to ensure Twilio can reach the TwiML webhook
     """
-    base_url = str(request.base_url).rstrip('/')
+    # ✅ FIX: Use resolved public URL so Twilio can fetch TwiML correctly
+    base_url = _resolve_base_url(request)
     twiml_url = f"{base_url}/api/voice/incoming"
     
     result = voice_service.make_outbound_call(to_number, twiml_url)

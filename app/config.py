@@ -27,5 +27,10 @@ class Settings:
     
     # Escalation
     ESCALATION_PHONE: str = os.getenv("ESCALATION_PHONE", "+96551600140")
+    
+    # ✅ FIX: Public URL for Twilio webhooks (MUST be set in Railway environment variables)
+    # This ensures Twilio can reach the correct public URL when making outbound calls from the website
+    # Example: https://fahlawy-ai-production.up.railway.app
+    PUBLIC_URL: str = os.getenv("PUBLIC_URL", "")
 
 settings = Settings()

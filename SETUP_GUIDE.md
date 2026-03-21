@@ -93,6 +93,7 @@ ELEVENLABS_VOICE_ID=EXAVITQu4vr4xnSDxMaL
 ESCALATION_PHONE=+96551600140
 APP_NAME=Fahlawy AI
 DEBUG=False
+PUBLIC_URL=https://fahlawy-ai-production.up.railway.app
 ```
 
 4. **اضغط "Save" أو "Add"**
@@ -188,6 +189,17 @@ https://fahlawy-ai-production.up.railway.app
 ### المشكلة: المكالمات لا تعمل
 - تأكد من رابط Voice Webhook في Twilio
 - تأكد أن الرقم صحيح
+
+### ⚠️ المشكلة: الذكاء الاصطناعي يرد على المكالمة لكن لا يتكلم (عند الاتصال من الموقع)
+**السبب:** عند الاتصال من الموقع (Outbound Call)، Twilio يحاول يجيب ملف TwiML من السيرفر.
+إذا الرابط المُرسل لـ Twilio كان عنوان داخلي (مثل `http://localhost` أو عنوان Railway الداخلي)،
+Twilio ما يقدر يوصله، فالمكالمة تتصل بدون صوت.
+
+**الحل:** أضف هذا المتغير في Railway:
+```
+PUBLIC_URL=https://fahlawy-ai-production.up.railway.app
+```
+⚠️ **استبدل الرابط برابط مشروعك الفعلي على Railway**
 
 ---
 
