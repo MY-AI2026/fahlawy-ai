@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fahlawy AI - Call Logs &amp; Transcripts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#258cf4",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 flex flex-col bg-white dark:bg-background-dark">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">Fahlawy AI</h1>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="/dashboard">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg transition-colors" href="/call-logs">
+<span class="material-symbols-outlined">call</span>
+<span class="text-sm font-medium">Call Logs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="/knowledge-base">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm font-medium">Transcripts</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Contacts</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="/campaigns">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">Analytics</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="/billing">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-3">
+<div class="w-8 h-8 rounded-full bg-slate-300 dark:bg-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrfzmsSbfTzZ8yAqRx311V_s_FCPL5oK0YWKnb5lVI3GtL0whegSLpDFmVYzoeZ1WNBkZNDnNImdZR2Jlq71wiR3nt87FCAKBWnDX3P9O2Sm9rOI2l7hVf5YEw2ZGomWufz3C7jTHlmp20Q1725d7wHrNoIwDcUwwb_lugOJJyGZ5uIQcN92bLC2YDxihlF7qh3hhHnvYYuFrOcg0Msd9Tz5CUb31Rcd4dDTYMh9Xr02sDcqbyw_c3eSDal-6lhY9QKVEeg4hZ-VY9"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-semibold truncate">Ahmed Fahlawy</p>
+<p class="text-[10px] text-slate-500 truncate">Pro Plan</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col min-w-0 bg-slate-50 dark:bg-background-dark/50">
+<!-- Header -->
+<header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-8 flex items-center justify-between">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary" placeholder="Search calls, numbers or outcomes..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">add</span>
+                        New Campaign
+                    </button>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<!-- Table Section -->
+<div class="flex-1 flex flex-col p-8 overflow-y-auto">
+<div class="mb-6">
+<h2 class="text-2xl font-bold">Call Logs &amp; Transcripts</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Review recent AI-driven customer interactions and lead scoring.</p>
+</div>
+<!-- Filters -->
+<div class="flex items-center gap-2 mb-6 border-b border-slate-200 dark:border-slate-800">
+<button class="px-4 py-3 text-sm font-semibold border-b-2 border-primary text-primary">All Calls</button>
+<button class="px-4 py-3 text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Interested</button>
+<button class="px-4 py-3 text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Follow-up</button>
+<button class="px-4 py-3 text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">Unsuccessful</button>
+</div>
+<!-- Table -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Timestamp</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Customer Number</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Duration</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Outcome</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group cursor-pointer" onclick="location.href='/call-analysis'">
+<td class="px-6 py-4 text-sm whitespace-nowrap">Oct 24, 10:15 AM</td>
+<td class="px-6 py-4 text-sm font-medium whitespace-nowrap">+20 123 456 7890</td>
+<td class="px-6 py-4 text-sm text-slate-500 whitespace-nowrap">2m 45s</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400">
+                                            Interested
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right whitespace-nowrap">
+<button class="text-primary hover:underline text-sm font-bold flex items-center justify-end gap-1 ml-auto">
+                                            View Transcript
+                                            <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors bg-primary/5 dark:bg-primary/5">
+<td class="px-6 py-4 text-sm whitespace-nowrap">Oct 24, 09:30 AM</td>
+<td class="px-6 py-4 text-sm font-medium whitespace-nowrap">+20 987 654 3210</td>
+<td class="px-6 py-4 text-sm text-slate-500 whitespace-nowrap">0m 15s</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                                            No Answer
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right whitespace-nowrap">
+<button class="text-primary hover:underline text-sm font-bold flex items-center justify-end gap-1 ml-auto">
+                                            View Transcript
+                                            <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm whitespace-nowrap">Oct 23, 04:20 PM</td>
+<td class="px-6 py-4 text-sm font-medium whitespace-nowrap">+20 555 012 3456</td>
+<td class="px-6 py-4 text-sm text-slate-500 whitespace-nowrap">5m 12s</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400">
+                                            Not Interested
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right whitespace-nowrap">
+<button class="text-primary hover:underline text-sm font-bold flex items-center justify-end gap-1 ml-auto">
+                                            View Transcript
+                                            <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm whitespace-nowrap">Oct 23, 02:00 PM</td>
+<td class="px-6 py-4 text-sm font-medium whitespace-nowrap">+20 111 222 3333</td>
+<td class="px-6 py-4 text-sm text-slate-500 whitespace-nowrap">3m 20s</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400">
+                                            Interested
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right whitespace-nowrap">
+<button class="text-primary hover:underline text-sm font-bold flex items-center justify-end gap-1 ml-auto">
+                                            View Transcript
+                                            <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm whitespace-nowrap">Oct 23, 11:45 AM</td>
+<td class="px-6 py-4 text-sm font-medium whitespace-nowrap">+20 444 555 6666</td>
+<td class="px-6 py-4 text-sm text-slate-500 whitespace-nowrap">1m 10s</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400">
+                                            Follow-up Required
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right whitespace-nowrap">
+<button class="text-primary hover:underline text-sm font-bold flex items-center justify-end gap-1 ml-auto">
+                                            View Transcript
+                                            <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<p class="text-xs text-slate-500">Showing 5 of 1,240 calls</p>
+<div class="flex gap-2">
+<button class="p-1 rounded border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50">
+<span class="material-symbols-outlined text-xl">navigate_before</span>
+</button>
+<button class="p-1 rounded border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-xl">navigate_next</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Transcript Sidebar Modal-like Preview -->
+<div class="w-96 border-l border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex flex-col">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<div>
+<h3 class="font-bold text-lg">Call Transcript</h3>
+<p class="text-xs text-slate-500">+20 987 654 3210</p>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-6 no-scrollbar bg-slate-50/50 dark:bg-background-dark">
+<!-- Message Bubble: AI -->
+<div class="flex flex-col gap-1 items-start">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Fahlawy AI</span>
+<span class="text-[10px] text-slate-400">09:30:02 AM</span>
+</div>
+<div class="max-w-[90%] bg-primary text-white p-3 rounded-lg rounded-tl-none text-sm shadow-sm">
+                                Hello! This is Sam from the Fahlawy Real Estate team. Am I speaking with Omar?
+                            </div>
+</div>
+<!-- Message Bubble: Customer -->
+<div class="flex flex-col gap-1 items-end">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] text-slate-400">09:30:10 AM</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Omar (Customer)</span>
+</div>
+<div class="max-w-[90%] bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3 rounded-lg rounded-tr-none text-sm shadow-sm">
+                                Yes, this is Omar. Who is this again?
+                            </div>
+</div>
+<!-- Message Bubble: AI -->
+<div class="flex flex-col gap-1 items-start">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Fahlawy AI</span>
+<span class="text-[10px] text-slate-400">09:30:15 AM</span>
+</div>
+<div class="max-w-[90%] bg-primary text-white p-3 rounded-lg rounded-tl-none text-sm shadow-sm">
+                                I'm calling from Fahlawy AI. We saw you were interested in the new Zayed properties. Is this a good time to talk about the pricing?
+                            </div>
+</div>
+<!-- Message Bubble: Customer -->
+<div class="flex flex-col gap-1 items-end">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] text-slate-400">09:30:25 AM</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Omar (Customer)</span>
+</div>
+<div class="max-w-[90%] bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3 rounded-lg rounded-tr-none text-sm shadow-sm">
+                                Actually, I'm driving right now. Can you call me back in an hour?
+                            </div>
+</div>
+<!-- Message Bubble: AI -->
+<div class="flex flex-col gap-1 items-start">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Fahlawy AI</span>
+<span class="text-[10px] text-slate-400">09:30:30 AM</span>
+</div>
+<div class="max-w-[90%] bg-primary text-white p-3 rounded-lg rounded-tl-none text-sm shadow-sm">
+                                Of course, Omar. I'll schedule a follow-up for 10:30 AM. Safe driving!
+                            </div>
+</div>
+<!-- AI Logic/Action Note -->
+<div class="bg-primary/5 border border-dashed border-primary/30 rounded-lg p-3 text-center">
+<p class="text-[11px] font-medium text-primary uppercase tracking-tighter">AI Action: Created Calendar Event (Follow-up)</p>
+</div>
+</div>
+<div class="p-6 border-t border-slate-200 dark:border-slate-800 space-y-3 bg-slate-50/50 dark:bg-background-dark">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold">Lead Score</span>
+<span class="text-xs font-bold text-emerald-500">82/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full">
+<div class="bg-emerald-500 h-1.5 rounded-full w-[82%]"></div>
+</div>
+<button class="w-full bg-primary/10 hover:bg-primary/20 text-primary font-bold py-2 rounded-lg text-sm transition-all">
+                            Download Audio (.mp3)
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

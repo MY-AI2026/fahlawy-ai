@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#258cf4",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<title>Fahlawy AI - System Admin Panel</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary/30">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-6 py-3 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white">grid_view</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Fahlawy AI Admin</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1" href="/admin">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="/tenants">Tenants</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Monitoring</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="/call-logs">Logs</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<label class="hidden lg:flex flex-col min-w-40 h-9 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded h-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+<div class="text-slate-500 flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-sm">search</span>
+</div>
+<input class="form-input w-full border-none bg-transparent focus:ring-0 text-sm placeholder:text-slate-500" placeholder="Search platform..." value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:border-slate-800 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold leading-none">Super Admin</p>
+<p class="text-xs text-slate-500 mt-1">System Wide Access</p>
+</div>
+<div class="bg-primary/20 rounded-full size-9 flex items-center justify-center border border-primary/30" data-alt="User avatar icon placeholder">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col md:flex-row">
+<aside class="w-full md:w-64 border-r border-slate-200 dark:border-slate-800 p-4 space-y-6 bg-background-light dark:bg-background-dark">
+<div class="space-y-1">
+<p class="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Main Menu</p>
+<a class="flex items-center gap-3 px-3 py-2 rounded bg-primary text-white font-medium" href="/admin">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="/tenants">
+<span class="material-symbols-outlined">business</span>
+<span class="text-sm">Tenants</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="text-sm">API Health</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="/call-logs">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm">System Logs</span>
+</a>
+</div>
+<div class="space-y-1">
+<p class="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Internal Stats</p>
+<div class="px-3 py-4 bg-primary/5 rounded-lg border border-primary/10">
+<p class="text-xs text-slate-500">Global Uptime</p>
+<p class="text-xl font-bold text-primary mt-1">99.98%</p>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-1 mt-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[99.9%]"></div>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1 p-6 md:p-10 space-y-8 overflow-y-auto max-h-[calc(100vh-64px)]">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">System Overview</h1>
+<p class="text-slate-500 mt-1">Real-time platform statistics and infrastructure health.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-semibold shadow-sm">
+<span class="material-symbols-outlined text-sm">refresh</span> Refresh Data
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded bg-primary text-white text-sm font-semibold shadow-md">
+<span class="material-symbols-outlined text-sm">add</span> New Tenant
+                            </button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-slate-500">Total Companies</p>
+<span class="material-symbols-outlined text-primary">domain</span>
+</div>
+<p class="text-3xl font-bold mt-2">1,284</p>
+<p class="text-xs font-medium text-green-500 mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +12% this month
+                            </p>
+</div>
+<div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-slate-500">Total Minutes Used</p>
+<span class="material-symbols-outlined text-primary">timer</span>
+</div>
+<p class="text-3xl font-bold mt-2">452,000</p>
+<p class="text-xs font-medium text-green-500 mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +5.2% vs last week
+                            </p>
+</div>
+<div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-slate-500">Active Tenants</p>
+<span class="material-symbols-outlined text-primary">groups</span>
+</div>
+<p class="text-3xl font-bold mt-2">892</p>
+<p class="text-xs font-medium text-slate-500 mt-2">70% utilization rate</p>
+</div>
+<div class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-slate-500">Peak Concurrency</p>
+<span class="material-symbols-outlined text-primary">bolt</span>
+</div>
+<p class="text-3xl font-bold mt-2">142</p>
+<p class="text-xs font-medium text-slate-500 mt-2">Active calls right now</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-6">
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<h2 class="text-lg font-bold">Registered Tenants</h2>
+<button class="text-primary text-sm font-semibold">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 text-xs uppercase tracking-wider font-bold">
+<tr>
+<th class="px-6 py-3">Tenant Name</th>
+<th class="px-6 py-3">Status</th>
+<th class="px-6 py-3">Usage</th>
+<th class="px-6 py-3 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-primary">A</div>
+<div>
+<p class="text-sm font-bold">Alpha Logistics</p>
+<p class="text-xs text-slate-500">ID: TN-9021</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full bg-green-500/10 text-green-500 text-[10px] font-bold uppercase">Active</span>
+</td>
+<td class="px-6 py-4 text-sm">12,450 min</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-primary">H</div>
+<div>
+<p class="text-sm font-bold">HealthCore Inc</p>
+<p class="text-xs text-slate-500">ID: TN-5542</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full bg-green-500/10 text-green-500 text-[10px] font-bold uppercase">Active</span>
+</td>
+<td class="px-6 py-4 text-sm">45,120 min</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-primary">S</div>
+<div>
+<p class="text-sm font-bold">Skyline Retail</p>
+<p class="text-xs text-slate-500">ID: TN-1209</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 rounded-full bg-amber-500/10 text-amber-500 text-[10px] font-bold uppercase">Pending</span>
+</td>
+<td class="px-6 py-4 text-sm">0 min</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<h2 class="text-lg font-bold">Technical Monitoring</h2>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 text-[10px] font-bold uppercase text-slate-400">
+<span class="size-2 rounded-full bg-green-500"></span> Live Logs
+                                        </span>
+</div>
+</div>
+<div class="bg-slate-950 p-4 font-mono text-xs text-green-400 h-64 overflow-y-auto leading-relaxed">
+<p><span class="text-slate-500">[2023-10-27 14:22:01]</span> <span class="text-blue-400">INFO</span>: Incoming webhook from Twilio for SID: SM4452...</p>
+<p><span class="text-slate-500">[2023-10-27 14:22:02]</span> <span class="text-blue-400">INFO</span>: Initializing OpenAI GPT-4 connection for Tenant: Alpha...</p>
+<p><span class="text-slate-500">[2023-10-27 14:22:04]</span> <span class="text-blue-400">INFO</span>: Synthesizing voice via ElevenLabs API (Turbo-v2)...</p>
+<p><span class="text-slate-500">[2023-10-27 14:22:05]</span> <span class="text-green-400">SUCCESS</span>: Voice stream established. Latency: 420ms.</p>
+<p><span class="text-slate-500">[2023-10-27 14:22:10]</span> <span class="text-yellow-400">WARN</span>: Database connection pool reaching 80% capacity.</p>
+<p><span class="text-slate-500">[2023-10-27 14:22:15]</span> <span class="text-blue-400">INFO</span>: Scheduled cleanup task completed in 1.2s.</p>
+<p><span class="text-slate-500">[2023-10-27 14:22:20]</span> <span class="text-primary cursor-default">_</span></p>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm">
+<h2 class="text-lg font-bold mb-4">External API Status</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-white dark:bg-slate-700 flex items-center justify-center border border-slate-200 dark:border-slate-600">
+<span class="material-symbols-outlined text-primary text-sm">record_voice_over</span>
+</div>
+<div>
+<p class="text-sm font-bold leading-tight">ElevenLabs</p>
+<p class="text-[10px] text-slate-500">Latency: 120ms</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-500/10 text-green-500 border border-green-500/20">OPERATIONAL</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-white dark:bg-slate-700 flex items-center justify-center border border-slate-200 dark:border-slate-600">
+<span class="material-symbols-outlined text-primary text-sm">call</span>
+</div>
+<div>
+<p class="text-sm font-bold leading-tight">Twilio</p>
+<p class="text-[10px] text-slate-500">Latency: 45ms</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-500/10 text-green-500 border border-green-500/20">OPERATIONAL</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-white dark:bg-slate-700 flex items-center justify-center border border-slate-200 dark:border-slate-600">
+<span class="material-symbols-outlined text-primary text-sm">psychology</span>
+</div>
+<div>
+<p class="text-sm font-bold leading-tight">OpenAI</p>
+<p class="text-[10px] text-slate-500">Latency: 890ms</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-500/10 text-green-500 border border-green-500/20">OPERATIONAL</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-white dark:bg-slate-700 flex items-center justify-center border border-slate-200 dark:border-slate-600">
+<span class="material-symbols-outlined text-primary text-sm">cloud</span>
+</div>
+<div>
+<p class="text-sm font-bold leading-tight">Vercel Core</p>
+<p class="text-[10px] text-slate-500">Uptime: 100%</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-500/10 text-green-500 border border-green-500/20">OPERATIONAL</span>
+</div>
+</div>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm">
+<h2 class="text-lg font-bold mb-4">Server Status</h2>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-slate-500 font-medium">CPU Load</span>
+<span class="font-bold">42%</span>
+</div>
+<div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full">
+<div class="bg-primary h-full w-[42%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-slate-500 font-medium">Memory Usage</span>
+<span class="font-bold">8.4GB / 16GB</span>
+</div>
+<div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full">
+<div class="bg-primary h-full w-[52.5%] rounded-full"></div>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">dns</span>
+<span class="text-sm">Main Database Cluster</span>
+</div>
+<span class="text-xs font-bold text-green-500">Healthy</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

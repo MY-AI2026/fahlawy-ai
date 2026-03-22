@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        blue: {
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        }
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"],
+                        "label": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #020617; /* slate-950 */
+        }
+    </style>
+</head>
+<body class="font-body text-slate-200 antialiased">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-6 h-16 w-full fixed top-0 z-50 bg-slate-950 dark:bg-slate-950 border-b border-slate-800 font-sans antialiased">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight text-white">Fahlawy AI</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-400 hover:text-slate-200 transition-colors" href="#">Documentation</a>
+<a class="text-slate-400 hover:text-slate-200 transition-colors" href="/api-portal">API Reference</a>
+<a class="text-slate-400 hover:text-slate-200 transition-colors" href="#">Status</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+<input class="bg-slate-900 border-slate-800 text-sm rounded-lg pl-10 pr-4 py-1.5 w-64 focus:ring-blue-500 focus:border-blue-500 transition-all" placeholder="Search integrations..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-400 hover:bg-slate-900 rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-400 hover:bg-slate-900 rounded-full transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 text-slate-400 hover:bg-slate-900 rounded-full transition-all">
+<span class="material-symbols-outlined">language</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-slate-800 overflow-hidden border border-slate-700 ml-2">
+<img alt="User profile avatar" data-alt="Professional male user profile avatar circular" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6_igHO_TS2F4k-v7peE9GdVUYGesinaZC8PTkabSQE8ZqOTHiBLmxAY2fZbcwyzEJ59dafXzuP0N1h9CMmqvlkh__CQzVA-iULHJ_fxZZ9GLgX4IxuO647hNX_YgXXNKCOvudjjSkWJl_BH8_wPaEMEYgwIfolq3jDT9FAkZDra3QaPgSVi4SKW8kufcCjopBYdbeXwMXqv_j72Y2fhM-9y4ihVZI3l_ZVdVUpzyBri5VBy0_VDF5yz_l6Mvt5Ho6l30xtU-4EnY2"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col z-40 bg-slate-900 dark:bg-slate-900 border-r border-slate-800 shadow-xl pt-16">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-white leading-none">Fahlawy AI</h2>
+<p class="text-[10px] uppercase tracking-wider text-slate-500 font-bold mt-1">Enterprise SaaS</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="/dashboard">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="/call-logs">
+<span class="material-symbols-outlined">analytics</span>
+<span>Call Analysis</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="/api-portal">
+<span class="material-symbols-outlined">code</span>
+<span>API Portal</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="/tenants">
+<span class="material-symbols-outlined">corporate_fare</span>
+<span>Tenants</span>
+</a>
+<a class="flex items-center gap-3 bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 px-4 py-3 transition-all text-sm font-medium" href="/integrations">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">hub</span>
+<span>CRM Hub</span>
+</a>
+</nav>
+<div class="p-2 border-t border-slate-800">
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 pt-16 min-h-screen bg-slate-950">
+<div class="p-8 max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-widest">Marketplace</span>
+</div>
+<h1 class="text-4xl font-black text-white tracking-tight">CRM Integration Hub</h1>
+<p class="text-slate-400 mt-2 max-w-2xl text-lg">Connect Fahlawy AI to your existing workflow. Sync leads, call transcripts, and customer status automatically across your tech stack.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all flex items-center gap-2 border border-slate-700">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filters
+                    </button>
+<button class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-blue-900/20">
+                        Manage Global Webhooks
+                    </button>
+</div>
+</div>
+<!-- Integration Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Salesforce -->
+<div class="group relative bg-slate-900 border border-slate-800 rounded-xl p-6 transition-all hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-900/10 flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center p-2 shadow-inner">
+<img alt="Salesforce Logo" class="w-10 h-10 object-contain" data-alt="Salesforce cloud logo with blue colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFNqX3HpWd8IGnyLWlrYkuIc4IU6Fon1r9Tet3yeQdwHY2WjjXwb_sZeB3NeY4MhqoOdS7NuGybvx06FGu_nCY8U6ZlD1G7RZ5sByGHT6Iz9a10BtDG2QS_tG-mSSFybE5xuMMxMPpIIrPfehHdqt0_ejR98ZvI5IetRZkOygxpBWWJzYHpIkuZ0YTGp016C1Gsme1aFKofe_VshfacOykLycXMYVry9__IbOtHAbKUR70puQUZlH7ZzD-_d8W8h3DihwoZz9he2d9"/>
+</div>
+<span class="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            Connected
+                        </span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Salesforce</h3>
+<p class="text-slate-400 text-sm mb-6 flex-grow">Advanced bi-directional sync for enterprise accounts. Map custom fields and record call outcomes directly to CRM objects.</p>
+<div class="space-y-3 mb-6">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Active Data Streams</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">person</span> Leads
+                            </span>
+<span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">description</span> Transcripts
+                            </span>
+<span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">star</span> Status
+                            </span>
+</div>
+</div>
+<button class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold rounded-lg transition-all border border-slate-700 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">settings</span>
+                        Configure
+                    </button>
+</div>
+<!-- HubSpot -->
+<div class="group relative bg-slate-900 border border-slate-800 rounded-xl p-6 transition-all hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-900/10 flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center p-2 shadow-inner">
+<img alt="HubSpot Logo" class="w-10 h-10 object-contain" data-alt="HubSpot sprocket logo in orange and white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOHobzh-RS0-4eM0jnQIUmLGz90DceFltd690SKwbn-YKpNc2wHN-AQH9IOkhOYw6oa8ncuudRHftRv9U0HcOmddJyAmwBcJllP1CBJbqSIVU5anan7Fydy1VJPEboyKUrQ0cAogPygmocsff1QuvA6t8be5_zpZ1nZMIHVtLjxDYnpqOlq2-36WCPNM943wDOuMeyJTZBYCGSegkbCE6z5R8QY-3jEN3J9lrDeXrjPtXigKbWvIaUdihbLcWYx1fFgkMAJPB6nSz1"/>
+</div>
+<span class="flex items-center gap-1.5 text-[10px] font-bold text-slate-500 bg-slate-800 px-2 py-1 rounded-full uppercase tracking-wider">
+                            Not Connected
+                        </span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">HubSpot</h3>
+<p class="text-slate-400 text-sm mb-6 flex-grow">Automate your inbound pipeline. Create contacts from calls and attach recordings to the timeline automatically.</p>
+<div class="space-y-3 mb-6">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Supported Data</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-slate-800/50 text-slate-500 text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">person</span> Contacts
+                            </span>
+<span class="px-2.5 py-1 rounded bg-slate-800/50 text-slate-500 text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">history</span> Timelines
+                            </span>
+</div>
+</div>
+<button class="w-full py-3 px-4 bg-orange-600 hover:bg-orange-500 text-white text-sm font-bold rounded-lg transition-all shadow-lg shadow-orange-900/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                        Connect HubSpot
+                    </button>
+</div>
+<!-- Zoho -->
+<div class="group relative bg-slate-900 border border-slate-800 rounded-xl p-6 transition-all hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-900/10 flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center p-2 shadow-inner">
+<img alt="Zoho Logo" class="w-10 h-10 object-contain" data-alt="Zoho multi-color block logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu3pYVcaVl42mwDTpfUMIHgwWs-SyNpqR3wMjtgKuR6IZ3QagbMcEdaYimaO-ZhIdZlp7siEZGjl39ORUTgyzGE68a5UzqBH7xPhb1CzhrCi47iAhw21aj-yk6tcNeUpAiHpXjdRlOM0rFWJj0LKbtwFPkkqXKqqtffbZqu2GLPkZ_XTiHyXCBkDbQYFcTLEjTQ3xk4-RKxqkqRejcWOQP93ini0rkwWVun9d-Okt6vheWO5B-ea67seQ5Kb4iGBcpxhqrQF9qhOLS"/>
+</div>
+<span class="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            Connected
+                        </span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Zoho CRM</h3>
+<p class="text-slate-400 text-sm mb-6 flex-grow">Reliable synchronization for global sales teams. Push lead intelligence and call sentiment to Zoho records.</p>
+<div class="space-y-3 mb-6">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Active Data Streams</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">person</span> Leads
+                            </span>
+<span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">mood</span> Sentiment
+                            </span>
+</div>
+</div>
+<button class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold rounded-lg transition-all border border-slate-700 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">settings</span>
+                        Configure
+                    </button>
+</div>
+<!-- Pipedrive -->
+<div class="group relative bg-slate-900 border border-slate-800 rounded-xl p-6 transition-all hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-900/10 flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center p-2 shadow-inner">
+<img alt="Pipedrive Logo" class="w-10 h-10 object-contain" data-alt="Pipedrive green logo text" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMqYGwhwy1_s0x-hyqQ1JpYl1C2kqBsHhl2wsEq_pfQvfrPqhZ7CsnV5AsaNh1ujSn3rrZIAuuuvBbqBWKxvnf4khWyynogPf7PS1Khp3VaNutCkl8HqWs7CqKfG8vXlH78CwvteJ_MBSKc8rLGa1e-Vg3KkVf9vps_TTrpbIX7uRjJjxkBV7qgHDQvVVUkSC1tsHKO7i_oItr6FiWzC0XTpY64kHzvQ793vKHNdyDFh6kufd3EU1P1Ve_nZl-A9oPz4vQIOepDYIk"/>
+</div>
+<span class="flex items-center gap-1.5 text-[10px] font-bold text-slate-500 bg-slate-800 px-2 py-1 rounded-full uppercase tracking-wider">
+                            Not Connected
+                        </span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Pipedrive</h3>
+<p class="text-slate-400 text-sm mb-6 flex-grow">Visualize your sales process. Move deals automatically based on AI analysis of call triggers.</p>
+<div class="space-y-3 mb-6">
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Supported Data</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-slate-800/50 text-slate-500 text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">payments</span> Deals
+                            </span>
+<span class="px-2.5 py-1 rounded bg-slate-800/50 text-slate-500 text-xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">analytics</span> Triggers
+                            </span>
+</div>
+</div>
+<button class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold rounded-lg transition-all shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                        Connect Pipedrive
+                    </button>
+</div>
+<!-- Custom Webhooks (Featured/Double Wide) -->
+<div class="lg:col-span-2 group relative overflow-hidden bg-slate-900 border border-slate-800 rounded-xl p-8 transition-all hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-900/10">
+<!-- Background Pattern -->
+<div class="absolute right-0 top-0 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
+<div class="relative flex flex-col md:flex-row gap-8 items-center">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700">
+<span class="material-symbols-outlined text-blue-400 text-3xl">api</span>
+</div>
+<div>
+<span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-widest">Power User</span>
+<h3 class="text-2xl font-bold text-white mt-1">Custom Webhooks</h3>
+</div>
+</div>
+<p class="text-slate-400 text-base mb-6">The ultimate flexibility. Send real-time event payloads to any endpoint. Perfect for proprietary systems, Slack alerts, or custom Zapier flows.</p>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800">
+<p class="text-[10px] font-bold text-slate-500 uppercase mb-1">Endpoints</p>
+<p class="text-white font-mono text-sm">12 Active</p>
+</div>
+<div class="bg-slate-950/50 p-3 rounded-lg border border-slate-800">
+<p class="text-[10px] font-bold text-slate-500 uppercase mb-1">Payload Size</p>
+<p class="text-white font-mono text-sm">Up to 2MB</p>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-lg transition-all shadow-lg shadow-blue-900/20">
+                                    Create Webhook
+                                </button>
+<button class="px-6 py-3 bg-transparent hover:bg-slate-800 text-slate-300 text-sm font-bold rounded-lg transition-all border border-slate-700">
+                                    Read API Docs
+                                </button>
+</div>
+</div>
+<div class="hidden md:block w-72 bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-[11px] text-blue-400/80 leading-relaxed shadow-inner">
+<div class="flex gap-1.5 mb-3">
+<div class="w-2 h-2 rounded-full bg-red-500/50"></div>
+<div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+<div class="w-2 h-2 rounded-full bg-green-500/50"></div>
+</div>
+<span class="text-slate-500">// Event: call.completed</span><br/>
+                            {<br/>
+                              "id": <span class="text-emerald-400">"call_92jK2"</span>,<br/>
+                              "duration": <span class="text-orange-400">248</span>,<br/>
+                              "lead_id": <span class="text-emerald-400">"crm_881"</span>,<br/>
+                              "summary": <span class="text-emerald-400">"Interested in plan..."</span>,<br/>
+                              "sentiment": <span class="text-emerald-400">"positive"</span><br/>
+                            }
+                        </div>
+</div>
+</div>
+</div>
+<!-- Developer Tools Section (Asymmetric / Glassmorphism) -->
+<section class="mt-16">
+<div class="relative overflow-hidden bg-gradient-to-br from-blue-600/10 to-transparent border border-blue-500/20 rounded-2xl p-8 backdrop-blur-sm">
+<div class="flex flex-col lg:flex-row items-center gap-12">
+<div class="lg:w-1/2">
+<h2 class="text-3xl font-black text-white mb-4">Build Your Own Integration</h2>
+<p class="text-slate-400 text-lg mb-8 leading-relaxed">
+                                Use our robust SDKs and comprehensive REST API to build native integrations directly into your platform.
+                                Support for Node.js, Python, and Go.
+                            </p>
+<div class="flex items-center gap-8">
+<div class="flex flex-col">
+<span class="text-3xl font-black text-white">99.9%</span>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Uptime SLA</span>
+</div>
+<div class="w-px h-10 bg-slate-800"></div>
+<div class="flex flex-col">
+<span class="text-3xl font-black text-white">&lt;100ms</span>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Avg. Latency</span>
+</div>
+<div class="w-px h-10 bg-slate-800"></div>
+<div class="flex flex-col">
+<span class="text-3xl font-black text-white">256-bit</span>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">AES Encryption</span>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 relative">
+<div class="relative z-10 bg-slate-900/80 border border-slate-700 rounded-xl p-1 overflow-hidden shadow-2xl">
+<img alt="Code IDE view" class="rounded-lg opacity-80 grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Dark themed code editor showing API integration code" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXpPjfG29Et1ZY43dMdY662Dv_DLqzx2Vgt8xA-kizUOiRGh-2vLWEcpgR-5NwOXoKZE6G8OzA1ZW7nXXojYQB85cUGGiaf3eR58EJ4fzcfJhdl2DNTDk6yrkLAZ3FE1e6pQv7KeL6ibN0VvPpyjQWuUK1TKW_GXH6Ihol3I_TvlkGxA5gtdZ6eddTPNG-XPMdXvowkvg-EulqTzMKeDulRZGVMViH93qHXU1n0arzpyQ2KU0WCnfYnVcQBQU4mlM69eCl-zF6jwmA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<button class="flex items-center gap-2 bg-white text-slate-950 px-4 py-2 rounded-lg font-bold text-sm shadow-xl">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+                                        Explore Developer Portal
+                                    </button>
+</div>
+</div>
+<!-- Decorative glow -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

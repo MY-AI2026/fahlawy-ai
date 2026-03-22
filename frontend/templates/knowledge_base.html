@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Knowledge Base - Fahlawy AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#258cf4",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-6 py-3 shrink-0">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">hub</span>
+<h2 class="text-lg font-bold tracking-tight">Fahlawy AI</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="/dashboard">Dashboard</a>
+<a class="text-sm font-semibold text-primary" href="/knowledge-base">Knowledge Base</a>
+<a class="text-sm font-medium text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="/agent-editor">Agents</a>
+<a class="text-sm font-medium text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="/billing">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm w-64 focus:ring-2 focus:ring-primary outline-none" placeholder="Search documents..." type="text"/>
+</div>
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-800" data-alt="User profile avatar placeholder"></div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark p-4 flex flex-col gap-6 shrink-0 hidden lg:flex">
+<div>
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 px-2">Data Sources</h3>
+<div class="space-y-1">
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded bg-primary text-white text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-lg">description</span>
+                            Documents
+                        </button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-lg">link</span>
+                            Websites
+                        </button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-lg">subject</span>
+                            Text Snippets
+                        </button>
+<button class="w-full flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-medium transition-colors">
+<span class="material-symbols-outlined text-lg">integration_instructions</span>
+                            API Integrations
+                        </button>
+</div>
+</div>
+<div class="mt-auto">
+<div class="bg-slate-100 dark:bg-slate-800 rounded-xl p-4">
+<p class="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2">Storage Usage</p>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full mb-2">
+<div class="bg-primary h-full rounded-full" style="width: 65%"></div>
+</div>
+<p class="text-xs text-slate-600 dark:text-slate-300">650MB / 1GB</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-background-dark p-6">
+<div class="max-w-5xl mx-auto space-y-6">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<h1 class="text-2xl font-black tracking-tight text-slate-900 dark:text-slate-100">Knowledge Base</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Upload and manage the training data for your Fahlawy AI agent.</p>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 text-sm font-bold rounded transition-colors">
+<span class="material-symbols-outlined text-lg">edit_note</span>
+                                Paste Text
+                            </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-blue-600 text-white text-sm font-bold rounded transition-colors shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">upload_file</span>
+                                Upload Files
+                            </button>
+</div>
+</div>
+<!-- Statistics Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Documents</span>
+<span class="material-symbols-outlined text-primary">folder</span>
+</div>
+<p class="text-2xl font-bold">42</p>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Trained Tokens</span>
+<span class="material-symbols-outlined text-emerald-500">token</span>
+</div>
+<p class="text-2xl font-bold">1.2M</p>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Processing Status</span>
+<span class="material-symbols-outlined text-amber-500">sync</span>
+</div>
+<p class="text-2xl font-bold">2 Pending</p>
+</div>
+</div>
+<!-- Documents Table -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/20">
+<h3 class="font-bold text-sm">Trained Documents</h3>
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition-colors">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+</button>
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
+<tr>
+<th class="px-6 py-3">Document Name</th>
+<th class="px-6 py-3">Status</th>
+<th class="px-6 py-3">Size</th>
+<th class="px-6 py-3">Upload Date</th>
+<th class="px-6 py-3 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<span class="text-sm font-medium">Product_Specs_v2.pdf</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                                Ready
+                                            </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">4.2 MB</td>
+<td class="px-6 py-4 text-sm text-slate-500">Oct 24, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500">description</span>
+<span class="text-sm font-medium">Customer_Support_FAQ.docx</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                                                Training
+                                            </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">1.8 MB</td>
+<td class="px-6 py-4 text-sm text-slate-500">Oct 25, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">cancel</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">subject</span>
+<span class="text-sm font-medium">Refund_Policy_Snippet</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                                Ready
+                                            </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">12 KB</td>
+<td class="px-6 py-4 text-sm text-slate-500">Oct 12, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<span class="text-sm font-medium">Marketing_Strategy_2024.pdf</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                                Ready
+                                            </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">12.5 MB</td>
+<td class="px-6 py-4 text-sm text-slate-500">Sep 30, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm text-slate-500">
+<p>Showing 4 of 42 documents</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800">Previous</button>
+<button class="px-3 py-1 rounded border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800">Next</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Test Agent Playground -->
+<aside class="w-96 border-l border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex flex-col shrink-0 hidden xl:flex">
+<div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+<h3 class="font-bold">Test Agent</h3>
+</div>
+<button class="text-xs font-bold text-slate-500 hover:text-primary transition-colors" onclick="clearChat()">RESET</button>
+</div>
+<!-- Chat Area -->
+<div class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50 dark:bg-slate-900/20" id="chatContainer">
+<div class="flex flex-col gap-1">
+<div class="bg-slate-200 dark:bg-slate-800 rounded-lg rounded-tl-none p-3 text-sm max-w-[85%]">
+                            Hi! I'm your AI agent trained on the knowledge base. Ask me anything about your documents.
+                        </div>
+<span class="text-[10px] text-slate-400 px-1">AI Assistant • Just now</span>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="relative">
+<textarea id="chatInput" class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg p-3 pr-12 text-sm focus:ring-2 focus:ring-primary outline-none resize-none" placeholder="Type a message..." rows="2" onkeypress="if(event.key === 'Enter') { event.preventDefault(); sendMessage(); }"></textarea>
+<button class="absolute right-2 bottom-2 p-2 bg-primary text-white rounded transition-transform hover:scale-105" onclick="sendMessage()">
+<span class="material-symbols-outlined text-lg">send</span>
+</button>
+</div>
+<div class="mt-2 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-[10px] text-slate-500 font-medium uppercase tracking-tight">Agent Online • V1.4.2</span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<script>
+    async function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const message = input.value.trim();
+        if (!message) return;
+
+        addMessage(message, 'user');
+        input.value = '';
+
+        try {
+            const response = await fetch(`/api/test/chat?phone=kb_test&message=${encodeURIComponent(message)}`, { method: 'POST' });
+            const data = await response.json();
+            addMessage(data.response, 'bot');
+        } catch (e) {
+            addMessage("Sorry, I encountered an error. Please try again.", 'bot');
+        }
+    }
+
+    function addMessage(text, sender) {
+        const container = document.getElementById('chatContainer');
+        const div = document.createElement('div');
+        div.className = sender === 'user' ? 'flex flex-col items-end gap-1' : 'flex flex-col gap-1';
+
+        const bubbleClass = sender === 'user' ? 'bg-primary text-white rounded-lg rounded-tr-none' : 'bg-slate-200 dark:bg-slate-800 rounded-lg rounded-tl-none';
+        const label = sender === 'user' ? 'You' : 'AI Assistant';
+
+        div.innerHTML = `
+            <div class="${bubbleClass} p-3 text-sm max-w-[85%]">
+                ${text}
+            </div>
+            <span class="text-[10px] text-slate-400 px-1">${label} • Just now</span>
+        `;
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function clearChat() {
+        document.getElementById('chatContainer').innerHTML = `
+            <div class="flex flex-col gap-1">
+                <div class="bg-slate-200 dark:bg-slate-800 rounded-lg rounded-tl-none p-3 text-sm max-w-[85%]">
+                    Hi! I'm your AI agent trained on the knowledge base. Ask me anything about your documents.
+                </div>
+                <span class="text-[10px] text-slate-400 px-1">AI Assistant • Just now</span>
+            </div>
+        `;
+    }
+</script>
+</body></html>

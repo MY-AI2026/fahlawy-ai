@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fahlawy AI - Real Estate Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#258cf4",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #101922;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #258cf433;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display selection:bg-primary/30">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex h-16 w-full items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark px-6 z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<img alt="Fahlawy AI Logo" class="size-8" data-alt="Fahlawy AI Real Estate Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiFcXja1W54rA_Bp0j0Ek6pnIq0boFzzqLgNgmcMcvM_cDeaveh1yMXCXz6MLdCiW3uf9adtkDeVSlLa7kBEdcJ_PBvot7VZfLVRSO_Q1yx0QFs72pHMeOrwAksqrBGe5iASUUMo6oeveJOzo-RG-jC1_Cepbfa2n-OJLmvrl4KB4hlS10_OF0LhKYwE8sDdczWB0y4dX8FG06n9o8XtTgljnXaH4P_l3tHbd58MPoYq5xzOlVAgTz-YOyhDtw-RFXD2PFgPxClW_F"/>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold tracking-tight">Fahlawy AI</h2>
+</div>
+<div class="hidden md:flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+<button class="px-3 py-1 text-xs font-medium bg-white dark:bg-slate-700 shadow-sm rounded text-primary">English</button>
+<button class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">العربية</button>
+</div>
+</div>
+<div class="flex flex-1 max-w-xl px-8">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary transition-all" placeholder="Search properties in New Cairo, Sheikh Zayed..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex size-10 items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-background-dark"></span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">settings</span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:border-slate-800 mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-slate-900 dark:text-white">Omar El-Farouk</p>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">Senior Broker</p>
+</div>
+<div class="size-9 rounded-full bg-primary/20 border border-primary/30 overflow-hidden" data-alt="User profile avatar circle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoeSIQF-sYzhQ7OpH-Uv9rx8J50fbNDlLVQxdHSCe7_9deQ8GMJhSUvgi7OvwiufBSsCBZfsBl51Pfv_2yxjhhm7HrLHH1NQR1UDhIUaG4GlNBJux5uwFnu7PCG2lfiB4659Qwvp6vfGyZ4OKcHzAVZYSwxWwjhyhwhkJkzu7W0QA2f6qbt1LNjY2hIEeR1Mq235bl4tQJ3aqiM-cG68v3jsNc3jJe6Xu_r-6QEsDsxj4n885Y9CbqLPFApf762nRFu1IqoCDyhhk-'); background-size: cover;">
+</div>
+</div>
+</div>
+</header>
+<div class="flex h-[calc(100vh-64px)] w-full">
+<!-- Sidebar -->
+<aside class="w-64 flex-shrink-0 border-r border-slate-200 dark:border-slate-800 flex flex-col bg-background-light dark:bg-background-dark z-10">
+<nav class="flex-1 p-4 space-y-2">
+<p class="px-4 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-4">Main Menu</p>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-primary/10 text-primary font-medium group transition-all" href="/dashboard">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary transition-all group" href="/real-estate">
+<span class="material-symbols-outlined">apartment</span>
+<span>Properties</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined">filter_list</span>
+<span>Lead Pipeline</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary transition-all group" href="/agent-editor">
+<span class="material-symbols-outlined">smart_toy</span>
+<span>AI Agents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary transition-all group" href="/campaigns">
+<span class="material-symbols-outlined">query_stats</span>
+<span>Analytics</span>
+</a>
+<div class="pt-8">
+<p class="px-4 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-4">Egyptian Markets</p>
+<div class="space-y-1">
+<button class="w-full flex items-center justify-between px-4 py-2 text-sm text-slate-600 dark:text-slate-400 hover:text-white">
+<span>New Cairo</span>
+<span class="size-2 rounded-full bg-primary"></span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-2 text-sm text-slate-600 dark:text-slate-400 hover:text-white">
+<span>Sheikh Zayed</span>
+<span class="size-2 rounded-full bg-emerald-500"></span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-2 text-sm text-slate-600 dark:text-slate-400 hover:text-white">
+<span>Maadi</span>
+<span class="size-2 rounded-full bg-amber-500"></span>
+</button>
+</div>
+</div>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="bg-primary/5 border border-primary/20 rounded-xl p-4">
+<p class="text-xs font-semibold text-primary mb-1">AI Efficiency</p>
+<div class="h-1.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden mb-2">
+<div class="h-full bg-primary w-[94%]"></div>
+</div>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">94% of calls handled by AI this week.</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto custom-scrollbar bg-slate-50 dark:bg-background-dark/50">
+<div class="p-6 max-w-7xl mx-auto space-y-6">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-slate-900 dark:text-white">Market Overview</h1>
+<p class="text-sm text-slate-500 dark:text-slate-400 italic">Cairo Real Estate Insights &amp; Lead Velocity</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Last 30 Days</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>Add Listing</span>
+</button>
+</div>
+</div>
+<!-- Top KPI Widgets -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-6 rounded-xl hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<span class="text-emerald-500 text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span> +12.4%
+                                </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Active Showings</p>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white mt-1">128</h3>
+<p class="text-[10px] text-slate-400 mt-2 uppercase tracking-wide font-bold">New Cairo, Zayed, Heliopolis</p>
+</div>
+<div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-6 rounded-xl hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-amber-500/10 rounded-lg text-amber-500">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<span class="text-red-500 text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_down</span> -2.1%
+                                </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Pending Closings</p>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white mt-1">42</h3>
+<p class="text-[10px] text-slate-400 mt-2 uppercase tracking-wide font-bold">EGP 245,000,000 Value</p>
+</div>
+<div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-6 rounded-xl hover:border-primary/50 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-emerald-500/10 rounded-lg text-emerald-500">
+<span class="material-symbols-outlined">call</span>
+</div>
+<span class="text-emerald-500 text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">verified</span> 98% Qualify
+                                </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">AI Call Performance</p>
+<h3 class="text-3xl font-bold text-slate-900 dark:text-white mt-1">94%</h3>
+<p class="text-[10px] text-slate-400 mt-2 uppercase tracking-wide font-bold">1,402 Minutes Handled</p>
+</div>
+</div>
+<!-- Map and Analytics Row -->
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+<!-- Interactive Map -->
+<div class="lg:col-span-3 h-[450px] relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+<div class="absolute inset-0 bg-slate-200 dark:bg-slate-900" data-alt="Interactive real estate map of Cairo and Giza" data-location="Cairo, Egypt" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCbLDDwqchXQKNzJ8DuBZcWHCeZ5Q2J4Vxp2qOpPTuMXOcshxhLQ73fT91W8yQF5B9fLfd0Ushgxv7jlSbdE5rflVdnqSeUcbV7fbV08B5oVEdVR9KU5wv5_pTmP7464sTG5QqOZ5eKu08U-TvaYwlsCTr_2_7_6Yg61Q6atJBFSSX4exxgT_tCy3thKwj-208wcBC9BQJ7jAIK-syrhOXxki8TjclutmaPgqQqADfZA4XTEdXhXNxByiq3EYu6IvcPKvM24F2rgRsw'); background-size: cover;">
+</div>
+<!-- Map Overlays -->
+<div class="absolute top-4 left-4 z-10 space-y-2">
+<div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md p-3 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Lead Density</p>
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-primary ring-2 ring-primary/30"></span>
+<span class="text-xs font-medium">New Cairo (High)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-emerald-500 ring-2 ring-emerald-500/30"></span>
+<span class="text-xs font-medium">Sheikh Zayed (Med)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Map Markers (Visual indicators only) -->
+<div class="absolute top-1/3 left-1/4 animate-pulse">
+<div class="size-6 bg-primary rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+<div class="size-2 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="absolute bottom-1/4 right-1/3">
+<div class="size-6 bg-emerald-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+<div class="size-2 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="absolute bottom-4 right-4 flex flex-col gap-1">
+<button class="size-10 flex items-center justify-center bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-lg shadow-lg hover:bg-white dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="size-10 flex items-center justify-center bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-lg shadow-lg hover:bg-white dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+</div>
+<!-- Area Distribution Chart Widget -->
+<div class="lg:col-span-2 bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 rounded-xl flex flex-col h-[450px]">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Price per SQM</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Egyptian Market Index (EGP)</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">more_horiz</span>
+</div>
+<div class="flex-1 flex items-end gap-3 px-2 pb-2">
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-primary/20 hover:bg-primary transition-all rounded-t-lg relative" style="height: 85%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white text-[10px] px-2 py-1 rounded whitespace-nowrap">24k EGP</div>
+</div>
+<p class="text-[10px] text-slate-400 font-bold rotate-45 mt-4">N.Cairo</p>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-emerald-500/20 hover:bg-emerald-500 transition-all rounded-t-lg relative" style="height: 70%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white text-[10px] px-2 py-1 rounded whitespace-nowrap">21k EGP</div>
+</div>
+<p class="text-[10px] text-slate-400 font-bold rotate-45 mt-4">Zayed</p>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-amber-500/20 hover:bg-amber-500 transition-all rounded-t-lg relative" style="height: 55%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white text-[10px] px-2 py-1 rounded whitespace-nowrap">18k EGP</div>
+</div>
+<p class="text-[10px] text-slate-400 font-bold rotate-45 mt-4">Maadi</p>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-slate-500/20 hover:bg-slate-500 transition-all rounded-t-lg relative" style="height: 40%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white text-[10px] px-2 py-1 rounded whitespace-nowrap">15k EGP</div>
+</div>
+<p class="text-[10px] text-slate-400 font-bold rotate-45 mt-4">Heliopolis</p>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-full bg-slate-500/20 hover:bg-slate-500 transition-all rounded-t-lg relative" style="height: 30%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white text-[10px] px-2 py-1 rounded whitespace-nowrap">12k EGP</div>
+</div>
+<p class="text-[10px] text-slate-400 font-bold rotate-45 mt-4">October</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Pipeline & Agent Stats Table -->
+<div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
+<div class="p-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Active AI Sales Agents</h4>
+<button class="text-sm font-medium text-primary hover:underline">View All Pipeline</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-slate-900/50 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+<tr>
+<th class="px-6 py-4">AI Agent Name</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Leads Handled</th>
+<th class="px-6 py-4">Conversion Rate</th>
+<th class="px-6 py-4">Market Focus</th>
+<th class="px-6 py-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-700/50">
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">smart_toy</span>
+</div>
+<div>
+<p class="text-sm font-bold">Cairo_Agent_Alpha</p>
+<p class="text-[10px] text-slate-500 italic">Tone: Professional/Urgent</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-bold uppercase">
+<span class="size-1 bg-emerald-500 rounded-full"></span> Active
+                                            </span>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">432</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold">12.8%</span>
+<div class="w-16 h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 70%;"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-slate-500">New Cairo, Fifth Settlement</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-400">open_in_new</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">smart_toy</span>
+</div>
+<div>
+<p class="text-sm font-bold">Giza_Luxury_Bot</p>
+<p class="text-[10px] text-slate-500 italic">Tone: Friendly/Sophisticated</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-bold uppercase">
+<span class="size-1 bg-emerald-500 rounded-full"></span> Active
+                                            </span>
+</td>
+<td class="px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">215</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold">9.4%</span>
+<div class="w-16 h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 45%;"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-xs font-medium text-slate-500">Sheikh Zayed, Pyramid Hills</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-400">open_in_new</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
