@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tenant Management | Fahlawy AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            950: '#020617',
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            400: '#94a3b8',
+                            200: '#e2e8f0',
+                        },
+                        blue: {
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        }
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans"],
+                        "body": ["Public Sans"],
+                        "label": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 antialiased selection:bg-blue-500/30">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col z-40 bg-slate-900 dark:bg-slate-900 border-r border-slate-800 shadow-xl">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-blue-600 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-white">Fahlawy AI</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Enterprise SaaS</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 mt-4 px-2 space-y-1">
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-transform active:scale-95 text-sm font-medium" href="/dashboard">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-transform active:scale-95 text-sm font-medium" href="/call-logs">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                Call Analysis
+            </a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-transform active:scale-95 text-sm font-medium" href="/api-portal">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+                API Portal
+            </a>
+<a class="flex items-center gap-3 bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 px-4 py-3 transition-transform active:scale-95 text-sm font-medium" href="/tenants">
+<span class="material-symbols-outlined" data-icon="corporate_fare">corporate_fare</span>
+                Tenants
+            </a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-transform active:scale-95 text-sm font-medium" href="/integrations">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+                CRM Hub
+            </a>
+</nav>
+<div class="p-4 border-t border-slate-800">
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Support
+            </a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar (Authority: JSON) -->
+<header class="flex justify-between items-center px-6 h-16 w-full fixed top-0 z-50 bg-slate-950 dark:bg-slate-950 border-b border-slate-800 font-sans antialiased">
+<div class="flex items-center gap-8">
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-slate-400 hover:text-slate-200 transition-colors text-sm font-medium" href="#">Documentation</a>
+<a class="text-slate-400 hover:text-slate-200 transition-colors text-sm font-medium" href="/api-portal">API Reference</a>
+<a class="text-slate-400 hover:text-slate-200 transition-colors text-sm font-medium" href="#">Status</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<input class="bg-slate-900 border-slate-800 text-slate-300 text-sm rounded-lg pl-10 pr-4 py-2 w-64 focus:ring-blue-500 focus:border-blue-500" placeholder="Search tenants..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2 text-slate-500 text-lg">search</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-400 hover:bg-slate-900 rounded-lg transition-all"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-2 text-slate-400 hover:bg-slate-900 rounded-lg transition-all"><span class="material-symbols-outlined">settings</span></button>
+<div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-xs font-bold text-white overflow-hidden">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="Close up professional headshot of a male executive" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC9DVSx8PqFMqivOvecCxfNv_g_WOoTOVHAB9yQQGbfWlv0Zl-kY-Jog1Jp9J2LP3K-CLC8dw0TyvfZIwdIXQ9uFZnx0D5ZMblNgAlGBoDONPlfrsdEa5Ke6DovqNaT68yXYXDizPrxM4b_kCOSXgxcNkr5UTKL4z_63iiOPCbTlgFGfqNFiqGCmahu_nvbhy85Tb-UNRP8NRIIgxej5Axwebh0ni0Q_-unOUwboqdWe8spjI_clAO7fkorHxLgUvbGEOpQp2v40B6"/>
+</div>
+</div>
+</div>
+</header>
+<div class="pt-24 px-8 pb-12">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<h2 class="text-3xl font-extrabold text-white tracking-tight">Tenant Management</h2>
+<p class="text-slate-400 mt-1">Oversee ecosystem performance and global enterprise configurations.</p>
+</div>
+<div class="flex gap-3">
+<div class="flex bg-slate-900 p-1 rounded-lg border border-slate-800">
+<button class="px-4 py-2 bg-slate-800 text-white rounded-md text-sm font-medium shadow-sm">All Tenants</button>
+<button class="px-4 py-2 text-slate-400 hover:text-white text-sm font-medium">Health Risks</button>
+</div>
+<button class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-blue-900/20" onclick="provisionTenant()">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">add</span>
+                        Provision New Tenant
+                    </button>
+</div>
+</div>
+<!-- Advanced Filters (Bento Style Sub-header) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-slate-900/50 border border-slate-800 p-4 rounded-xl flex items-center gap-4 group hover:border-blue-500/50 transition-colors">
+<div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+<span class="material-symbols-outlined">filter_alt</span>
+</div>
+<div class="flex-1">
+<label class="block text-[10px] uppercase font-black text-slate-500 tracking-wider">Industry</label>
+<select class="bg-transparent border-none text-slate-200 font-bold p-0 focus:ring-0 w-full cursor-pointer">
+<option>All Industries</option>
+<option>Real Estate</option>
+<option>Education</option>
+<option>Healthcare</option>
+</select>
+</div>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 p-4 rounded-xl flex items-center gap-4 group hover:border-blue-500/50 transition-colors">
+<div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+<span class="material-symbols-outlined">ecg</span>
+</div>
+<div class="flex-1">
+<label class="block text-[10px] uppercase font-black text-slate-500 tracking-wider">System Health</label>
+<div class="text-slate-200 font-bold">Stable (98.2%)</div>
+</div>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 p-4 rounded-xl flex items-center gap-4 group hover:border-blue-500/50 transition-colors">
+<div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400">
+<span class="material-symbols-outlined">timer</span>
+</div>
+<div class="flex-1">
+<label class="block text-[10px] uppercase font-black text-slate-500 tracking-wider">Global Load</label>
+<div class="text-slate-200 font-bold">1.2M Minutes</div>
+</div>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 p-4 rounded-xl flex items-center gap-4 group hover:border-blue-500/50 transition-colors">
+<div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
+<span class="material-symbols-outlined">confirmation_number</span>
+</div>
+<div class="flex-1">
+<label class="block text-[10px] uppercase font-black text-slate-500 tracking-wider">Open Tickets</label>
+<div class="text-slate-200 font-bold">14 Pending</div>
+</div>
+</div>
+</div>
+<!-- Tenant Grid (Asymmetric / Modern Cards) -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+<!-- Tenant Card 1 -->
+<div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-blue-500/5 transition-all group">
+<div class="p-6 border-b border-slate-800 flex justify-between items-start">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-xl bg-slate-800 flex items-center justify-center overflow-hidden border border-slate-700">
+<img alt="Company Logo" class="w-full h-full object-cover" data-alt="Modern geometric corporate logo in blue and grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaQdttaF25ExthRaTT0drbUxsTqCBHy6l-pHJYn59qT4DDxPnb92n6T-zniJbnc-vcSinG6hbZ2BytE817WaDP6M4dFBBf2sY4S9BZ2VFISEo_pYfVhKw5mEIC5lfrt2Oyor8gTZ-jOFUtrla_x9nVDJEnpjOb-w-_PPNgmBR6P7rKj20Ys4M9l9uBHIGZoFVrhY4dBKEXNvkuuNrOMP1r3Qxa__-UHLOg1oxhjvbCs2In0m_vc7ITWJ04qBmZhqbun8uI_pSAy2Kt"/>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white">Horizon Real Estate</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-blue-500/10 text-blue-400 text-[10px] font-black uppercase rounded">Real Estate</span>
+<span class="flex items-center gap-1 text-emerald-400 text-xs font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                        Healthy
+                                    </span>
+</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 transition-colors" title="View Tickets">
+<span class="material-symbols-outlined text-xl">confirmation_number</span>
+</button>
+<button class="p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 transition-colors" title="Edit Config">
+<span class="material-symbols-outlined text-xl">tune</span>
+</button>
+</div>
+</div>
+<div class="p-6 grid grid-cols-2 gap-8">
+<div>
+<p class="text-[10px] uppercase font-black text-slate-500 tracking-widest mb-3">Feature Management</p>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-300">Voice Cloning</span>
+<button class="w-10 h-5 bg-blue-600 rounded-full relative transition-all">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-white rounded-full"></div>
+</button>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-300">CRM Sync</span>
+<button class="w-10 h-5 bg-blue-600 rounded-full relative transition-all">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-white rounded-full"></div>
+</button>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-300">Analytics API</span>
+<button class="w-10 h-5 bg-slate-700 rounded-full relative transition-all">
+<div class="absolute left-0.5 top-0.5 w-4 h-4 bg-slate-400 rounded-full"></div>
+</button>
+</div>
+</div>
+</div>
+<div>
+<p class="text-[10px] uppercase font-black text-slate-500 tracking-widest mb-3">Resource Allocation</p>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="text-slate-400">Monthly Call Minutes</span>
+<span class="text-white font-bold">45k / 50k</span>
+</div>
+<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full w-[90%]"></div>
+</div>
+</div>
+<div class="pt-2">
+<label class="text-[10px] text-slate-500 block mb-2 uppercase font-bold">Limit Adjustment</label>
+<input class="w-full accent-blue-500 bg-slate-800 rounded-lg h-1.5 appearance-none cursor-pointer" type="range"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Ghost Provisioning Card -->
+<div class="bg-slate-900/30 border-2 border-dashed border-slate-800 rounded-xl flex flex-col items-center justify-center p-12 group hover:bg-slate-900/50 hover:border-slate-700 transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center text-slate-500 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">add_business</span>
+</div>
+<div class="text-center mt-4">
+<h4 class="font-bold text-slate-400 group-hover:text-white">Onboard New Organization</h4>
+<p class="text-xs text-slate-600 group-hover:text-slate-500 mt-1">Configure workspace, API keys and billing limits.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Meta (Hidden on small screens) -->
+<footer class="ml-64 p-8 border-t border-slate-900 text-slate-500 flex justify-between items-center text-[10px] uppercase font-bold tracking-widest">
+<div>© 2024 Fahlawy AI System Core. All rights reserved.</div>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Infrastructure Logs</a>
+<a class="text-blue-500" href="#">v2.4.0-Stable</a>
+</div>
+</footer>
+<script>
+    async function provisionTenant() {
+        const name = prompt("Enter organization name:");
+        if (!name) return;
+
+        try {
+            const response = await fetch('/api/stats/increment?stat_type=leads', { method: 'POST' });
+            if (response.ok) {
+                alert(`Tenant "${name}" provisioned successfully!`);
+                location.reload();
+            }
+        } catch (e) {
+            alert("Error provisioning tenant.");
+        }
+    }
+</script>
+</body></html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fahlawy AI - Agent Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#258cf4",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 px-6 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-4xl">smart_toy</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">Fahlawy AI</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="/dashboard">Dashboard</a>
+<a class="text-sm font-semibold text-primary" href="/agent-editor">Agents</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="/knowledge-base">Knowledge Base</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="/billing">Settings</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-200 dark:bg-slate-800 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-primary/30 flex items-center justify-center border border-primary/50 overflow-hidden" data-alt="User profile avatar placeholder">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+</div>
+</header>
+<main class="flex flex-1 flex-col lg:flex-row">
+<!-- Sidebar Navigation -->
+<aside class="w-full lg:w-64 border-r border-slate-200 dark:border-slate-800 p-4 flex flex-col gap-2">
+<div class="mb-6 px-3">
+<p class="text-xs font-bold uppercase tracking-widest text-slate-500">Agent Configuration</p>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white font-medium" href="#">
+<span class="material-symbols-outlined">settings_suggest</span>
+<span>Core Setup</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" href="/knowledge-base">
+<span class="material-symbols-outlined">database</span>
+<span>Knowledge Base</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span>Personality</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">record_voice_over</span>
+<span>Voice Settings</span>
+</a>
+<div class="mt-auto p-4 rounded-xl bg-primary/10 border border-primary/20">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">graphic_eq</span>
+<span class="text-xs font-bold uppercase text-primary">Integration Status</span>
+</div>
+<p class="text-sm font-semibold mb-1">ElevenLabs</p>
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-green-500"></div>
+<span class="text-xs text-slate-500 dark:text-slate-400">Connected &amp; Active</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<section class="flex-1 p-6 lg:p-10 max-w-5xl">
+<div class="mb-8">
+<h1 class="text-3xl font-black tracking-tight mb-2">Agent Editor</h1>
+<p class="text-slate-500 dark:text-slate-400">Configure your Arabic AI assistant's brain, voice, and behavior.</p>
+</div>
+<div class="grid grid-cols-1 gap-8">
+<!-- Knowledge Base Section -->
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+<div>
+<h3 class="text-lg font-bold">Knowledge Base</h3>
+<p class="text-sm text-slate-500">Upload documents to train your agent.</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">info</span>
+</div>
+<div class="p-8">
+<div class="flex flex-col items-center justify-center gap-4 rounded-xl border-2 border-dashed border-primary/30 bg-primary/5 px-6 py-12">
+<div class="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
+</div>
+<div class="text-center">
+<p class="text-base font-bold">Drop files here or click to upload</p>
+<p class="text-xs text-slate-500 mt-1">Supports PDF, DOCX, and TXT (Max 50MB)</p>
+</div>
+<button class="mt-2 flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-lg font-bold text-sm shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity">
+<span>Choose Files</span>
+</button>
+</div>
+<!-- File List Mockup -->
+<div class="mt-6 space-y-3">
+<div class="flex items-center justify-between p-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">picture_as_pdf</span>
+<div>
+<p class="text-sm font-medium">Company_Handbook.pdf</p>
+<p class="text-xs text-slate-500">2.4 MB • Uploaded 2h ago</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Language & Personality -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Dialect Selection -->
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-6">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">translate</span>
+                                    Arabic Dialect
+                                </h3>
+<div class="space-y-3">
+<label class="flex items-center justify-between p-4 rounded-lg border-2 border-primary bg-primary/5 cursor-pointer">
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-2xl">🇪🇬</span>
+                                        <span class="font-medium">Egyptian (Masri)</span>
+                                    </div>
+                                    <input type="radio" name="dialect" value="Egyptian (Masri)" class="hidden" checked onchange="updateRadioUI(this)">
+                                    <div class="radio-indicator h-5 w-5 rounded-full border-4 border-primary bg-white"></div>
+                                </label>
+                                <label class="flex items-center justify-between p-4 rounded-lg border border-slate-200 dark:border-slate-800 hover:border-primary/50 cursor-pointer transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-2xl">🇸🇦</span>
+                                        <span class="font-medium">Gulf (Khaleeji)</span>
+                                    </div>
+                                    <input type="radio" name="dialect" value="Gulf (Khaleeji)" class="hidden" onchange="updateRadioUI(this)">
+                                    <div class="radio-indicator h-5 w-5 rounded-full border-2 border-slate-300 dark:border-slate-700"></div>
+                                </label>
+                                <label class="flex items-center justify-between p-4 rounded-lg border border-slate-200 dark:border-slate-800 hover:border-primary/50 cursor-pointer transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-2xl">🇱🇧</span>
+                                        <span class="font-medium">Levantine (Shami)</span>
+                                    </div>
+                                    <input type="radio" name="dialect" value="Levantine (Shami)" class="hidden" onchange="updateRadioUI(this)">
+                                    <div class="radio-indicator h-5 w-5 rounded-full border-2 border-slate-300 dark:border-slate-700"></div>
+                                </label>
+</div>
+</div>
+<!-- Personality/Prompt -->
+<div class="bg-white dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">edit_note</span>
+                                    Agent Instructions
+                                </h3>
+<div class="flex-1">
+<textarea id="agentInstructions" class="w-full h-48 rounded-lg bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus:ring-primary focus:border-primary text-sm placeholder:text-slate-500" placeholder="Describe how the AI should behave... e.g., 'You are a helpful customer support agent for a travel agency in Cairo. Use polite Egyptian slang and be very welcoming.'"></textarea>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="px-3 py-1.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" onclick="setPreset('Formal')">Formal</button>
+<button class="px-3 py-1.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" onclick="setPreset('Friendly')">Friendly</button>
+<button class="px-3 py-1.5 rounded bg-slate-100 dark:bg-slate-800 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" onclick="setPreset('Sales-driven')">Sales-driven</button>
+</div>
+</div>
+</div>
+<!-- Integration & Voice Card -->
+<div class="bg-gradient-to-r from-primary/10 to-transparent rounded-xl border border-primary/20 p-6">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-5">
+<div class="h-14 w-14 bg-white dark:bg-slate-800 rounded-lg shadow-sm flex items-center justify-center p-2" data-alt="ElevenLabs logo placeholder">
+<span class="material-symbols-outlined text-slate-800 dark:text-white text-3xl">settings_voice</span>
+</div>
+<div>
+<h4 class="font-bold text-lg">ElevenLabs Voice Integration</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Using "Adam" voice profile with ultra-low latency.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-4 py-2 rounded-lg border border-primary text-primary text-sm font-bold hover:bg-primary hover:text-white transition-all">
+                                        Test Voice
+                                    </button>
+<button class="px-6 py-2 rounded-lg bg-primary text-white text-sm font-bold shadow-lg shadow-primary/30 hover:scale-[1.02] transition-transform">
+                                        Sync Voice
+                                    </button>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="flex justify-end gap-4 pt-4 pb-10">
+<button class="px-8 py-3 rounded-lg border border-slate-200 dark:border-slate-800 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                                Discard Changes
+                            </button>
+<button class="px-12 py-3 rounded-lg bg-primary text-white font-bold text-lg shadow-xl shadow-primary/20 hover:opacity-90 transition-opacity" onclick="saveAgent()">
+                                Save Agent
+                            </button>
+</div>
+</div>
+</section>
+</main>
+</div>
+</div>
+<script>
+    function updateRadioUI(input) {
+        // Reset all labels
+        const labels = document.querySelectorAll('label.cursor-pointer');
+        labels.forEach(label => {
+            label.classList.remove('border-2', 'border-primary', 'bg-primary/5');
+            label.classList.add('border', 'border-slate-200', 'dark:border-slate-800');
+            const indicator = label.querySelector('.radio-indicator');
+            if (indicator) {
+                indicator.classList.remove('border-4', 'border-primary', 'bg-white');
+                indicator.classList.add('border-2', 'border-slate-300', 'dark:border-slate-700');
+            }
+        });
+
+        // Set active label
+        const activeLabel = input.closest('label');
+        activeLabel.classList.add('border-2', 'border-primary', 'bg-primary/5');
+        activeLabel.classList.remove('border', 'border-slate-200', 'dark:border-slate-800');
+        const activeIndicator = activeLabel.querySelector('.radio-indicator');
+        if (activeIndicator) {
+            activeIndicator.classList.add('border-4', 'border-primary', 'bg-white');
+            activeIndicator.classList.remove('border-2', 'border-slate-300', 'dark:border-slate-700');
+        }
+    }
+
+    function setPreset(type) {
+        const area = document.getElementById('agentInstructions');
+        if (type === 'Formal') {
+            area.value = "You are a professional corporate assistant. Use formal Modern Standard Arabic (Fusha) or professional business dialect. Be concise and helpful.";
+        } else if (type === 'Friendly') {
+            area.value = "You are a friendly and welcoming assistant. Use warm language, polite Egyptian slang, and emojis. Make the customer feel at home.";
+        } else if (type === 'Sales-driven') {
+            area.value = "You are a persuasive sales expert. Focus on highlighting benefits, creating urgency, and closing the deal. Use engaging and confident language.";
+        }
+    }
+
+    async function saveAgent() {
+        const instructions = document.getElementById('agentInstructions').value;
+        const selectedDialect = document.querySelector('input[name="dialect"]:checked')?.value || "Egyptian (Masri)";
+
+        try {
+            const response = await fetch(`/api/agent/config?dialect=${encodeURIComponent(selectedDialect)}&instructions=${encodeURIComponent(instructions)}`, {
+                method: 'POST'
+            });
+            const data = await response.json();
+            if (data.status === 'success') {
+                alert("Agent configuration saved successfully!");
+            } else {
+                alert("Failed to save configuration.");
+            }
+        } catch (e) {
+            alert("Error saving configuration: " + e.message);
+        }
+    }
+</script>
+</body></html>

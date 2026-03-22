@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#258cf4",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .funnel-trapezoid {
+            clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+        }
+        .step-active { border-color: #258cf4; color: #258cf4; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a2632; }
+        ::-webkit-scrollbar-thumb { background: #258cf4; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-700/50 bg-background-dark/80 backdrop-blur-md px-6 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4">
+<div class="size-10 bg-primary/20 flex items-center justify-center rounded-lg border border-primary/30">
+<img alt="Langford Institute Logo" class="h-8 w-8 object-contain" data-alt="Educational institute logo with professional emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzSHfDYIJ7uGMG--j0U-fKOhGT_7JQb6KEQ_H8EzvgzqWefNxFRlRuHO7HrMH4F5ajqKVfkF11sPxdSsrPzl5cOVyOvQpUg41xSR8cDpri8CxBkZ_PUPDq0PKsio7rWWZsao9ASUd2PA3-xz_Kh-jLbPGkrDQn5DPLoi1gracQk24w16oAvoNM8VtE-YXqfIJSOSUsxn5MT8Se0yXBTpdCj9n15ZF-tzbjHNW11a-rVLKAMlRcy4SuapuuXhtJefXVcrr9AD5aJXEK"/>
+</div>
+<div>
+<h2 class="text-slate-100 text-lg font-bold leading-tight tracking-tight">Langford Egypt</h2>
+<p class="text-xs text-slate-400">Campaign Management Suite</p>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1" href="/dashboard">Dashboard</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#">Students</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/agent-editor">Automation</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/campaigns">Reports</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<!-- Search -->
+<label class="hidden md:flex flex-col min-w-40 h-9 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg overflow-hidden bg-slate-800/50 border border-slate-700">
+<div class="text-slate-400 flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input w-full bg-transparent border-none focus:ring-0 text-sm text-white placeholder:text-slate-500" placeholder="Search leads..." value=""/>
+</div>
+</label>
+<!-- Bilingual Toggle -->
+<div class="flex items-center bg-slate-800 rounded-lg p-1 border border-slate-700">
+<button class="px-3 py-1 text-xs font-bold bg-primary text-white rounded shadow-sm">EN</button>
+<button class="px-3 py-1 text-xs font-bold text-slate-400 hover:text-white transition-colors">عربي</button>
+</div>
+<button class="flex items-center justify-center rounded-full bg-slate-800 border border-slate-700 size-9 text-slate-300">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="bg-primary/30 border border-primary/50 aspect-square rounded-full size-9 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+</div>
+</header>
+<main class="flex-1 p-6 md:p-10 max-w-7xl mx-auto w-full grid grid-cols-12 gap-8">
+<!-- Left Column: Campaign Builder & Flow -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-8">
+<!-- Header Section -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div>
+<h1 class="text-3xl font-black text-white tracking-tight">Campaign Builder</h1>
+<p class="text-slate-400">Launch targeted educational outreach in minutes</p>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+                    New Campaign
+                </button>
+</div>
+<!-- Stepper Flow -->
+<div class="bg-slate-800/30 border border-slate-700/50 rounded-xl p-8 backdrop-blur-sm">
+<div class="grid grid-cols-4 relative">
+<!-- Progress Line -->
+<div class="absolute top-5 left-[12.5%] right-[12.5%] h-0.5 bg-slate-700">
+<div class="h-full bg-primary w-[66%]"></div>
+</div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-3 relative z-10">
+<div class="size-10 rounded-full bg-primary text-white flex items-center justify-center ring-4 ring-background-dark">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div class="text-center">
+<p class="text-primary text-sm font-bold">Course Interest</p>
+<p class="text-slate-500 text-xs">Selection</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-3 relative z-10">
+<div class="size-10 rounded-full bg-primary text-white flex items-center justify-center ring-4 ring-background-dark">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div class="text-center">
+<p class="text-primary text-sm font-bold">Level Placements</p>
+<p class="text-slate-500 text-xs">Configuration</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-3 relative z-10">
+<div class="size-10 rounded-full bg-primary text-white flex items-center justify-center ring-4 ring-background-dark">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div class="text-center">
+<p class="text-primary text-sm font-bold">Scholarships</p>
+<p class="text-slate-500 text-xs">Criteria Lead</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-3 relative z-10">
+<div class="size-10 rounded-full bg-slate-700 text-slate-400 flex items-center justify-center ring-4 ring-background-dark">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<div class="text-center">
+<p class="text-slate-400 text-sm font-bold">Review</p>
+<p class="text-slate-500 text-xs">Launch</p>
+</div>
+</div>
+</div>
+<!-- Step Content: Scholarship Lead Criteria (Active Step 3 example) -->
+<div class="mt-12 p-6 rounded-xl bg-slate-900/50 border border-slate-700">
+<div class="flex items-center gap-4 mb-6">
+<div class="p-3 rounded-lg bg-primary/10 border border-primary/20 text-primary">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">Scholarship Lead Criteria</h3>
+<p class="text-slate-400 text-sm">Define automated filtering for high-potential candidates</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Minimum GPA Score</label>
+<input class="w-full accent-primary h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer" type="range"/>
+<div class="flex justify-between text-xs text-slate-500"><span>2.0</span><span>3.5 Target</span><span>4.0</span></div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Language Level Required</label>
+<select class="w-full bg-slate-800 border-slate-700 rounded-lg text-sm text-white focus:ring-primary focus:border-primary">
+<option>Intermediate (B1)</option>
+<option>Upper Intermediate (B2)</option>
+<option>Advanced (C1)</option>
+</select>
+</div>
+</div>
+<div class="flex justify-end gap-3 pt-4 border-t border-slate-700">
+<button class="px-6 py-2 text-sm font-bold text-slate-300 hover:text-white transition-colors">Back</button>
+<button class="px-6 py-2 bg-primary text-white rounded font-bold text-sm shadow shadow-primary/20">Next: Review &amp; Launch</button>
+</div>
+</div>
+</div>
+<!-- Enrollment Funnel -->
+<div class="bg-slate-800/30 border border-slate-700/50 rounded-xl p-8 backdrop-blur-sm">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="text-xl font-bold text-white">Enrollment Funnel</h2>
+<p class="text-slate-400 text-sm">Current Lead Progression Architecture</p>
+</div>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 text-xs text-green-400 bg-green-400/10 px-2 py-1 rounded">+12% vs LW</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 max-w-md mx-auto">
+<!-- Funnel Layers -->
+<div class="w-full bg-primary/40 h-16 rounded-t-xl flex items-center justify-center group relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/20 animate-pulse"></div>
+<span class="relative z-10 font-bold text-white text-sm">Leads: 12,450 (100%)</span>
+</div>
+<div class="w-[85%] bg-primary/60 h-16 flex items-center justify-center clip-path-funnel">
+<span class="font-bold text-white text-sm">Course Selection: 8,240 (66%)</span>
+</div>
+<div class="w-[70%] bg-primary/80 h-16 flex items-center justify-center">
+<span class="font-bold text-white text-sm">Placements: 4,120 (33%)</span>
+</div>
+<div class="w-[55%] bg-primary h-16 flex items-center justify-center">
+<span class="font-bold text-white text-sm">Scholarship Applied: 1,205 (9%)</span>
+</div>
+<div class="w-[40%] bg-white h-16 rounded-b-xl flex items-center justify-center">
+<span class="font-bold text-background-dark text-sm">Enrolled: 450 (3.6%)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Live Monitoring -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="bg-slate-900 border border-slate-700 rounded-xl h-full flex flex-col overflow-hidden">
+<div class="p-5 border-b border-slate-800 bg-slate-800/20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.8)]"></div>
+<h2 class="text-sm font-bold text-white uppercase tracking-widest">Live Monitoring</h2>
+</div>
+<div class="text-[10px] text-slate-500 bg-slate-800 px-2 py-1 rounded">AI AGENT: v2.4-stable</div>
+</div>
+<!-- Live Feed -->
+<div class="flex-1 overflow-y-auto p-4 space-y-4 max-h-[1000px]">
+<!-- Monitoring Item 1 -->
+<div class="bg-slate-800/40 border border-slate-700/50 p-4 rounded-lg flex gap-4 items-start relative group hover:bg-slate-800/60 transition-colors">
+<div class="size-10 rounded-full bg-slate-700 overflow-hidden flex-shrink-0">
+<img alt="Student Portrait" class="object-cover" data-alt="Portrait of a male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4k7NAEDRqOxIgPYiMg9nl9I6otioAlRob6lW9_ULzBSRMc6e7gaaasxl2yZd_hXaHV2J4CF1qu-PgfKnhrS-_c41d5Ut-EWKSwgnA0ArqaRV_G4WOv5pj5qXBAOM8jrbLQbCdgVJfjx3U3ykjfQ_7Y5psY3_GEZBmh1d8oOvcdd-QDyyyPWsy3hAvWz4fbNMFVFfOSTG-Bb-28QyZlHMMYQzKpEVFfFknhmhTF7jzThaX82I_IO5LBPWHjIlrd5LsGt66z-L7Lp9B"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h4 class="text-xs font-bold text-white">Ahmed K.</h4>
+<span class="text-[10px] text-slate-500">2 min ago</span>
+</div>
+<p class="text-[11px] text-slate-400 leading-tight mb-2 italic">"Is there a payment plan for the Advanced English scholarship?"</p>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-green-400 text-sm fill-1">sentiment_satisfied</span>
+<span class="text-[10px] text-green-400 font-medium">Positive</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm">language</span>
+<span class="text-[10px] text-slate-300">Arabic Dialect</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-5 border-t border-slate-800 bg-slate-800/40">
+<div class="flex justify-between text-xs mb-3">
+<span class="text-slate-400">Total Calls Today</span>
+<span class="text-white font-bold">1,248</span>
+</div>
+<div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[78%]"></div>
+</div>
+<p class="text-[10px] text-slate-500 mt-2 text-center">AI System health: 99.9% uptime</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-10 border-t border-slate-800/50 py-6 px-10 text-center text-slate-500 text-xs">
+<p>© 2024 Langford Egypt Campaign Manager. Powered by Langford AI v4.2. Registered Educational Institute.</p>
+</footer>
+</div>
+</body></html>

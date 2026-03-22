@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Billing &amp; Subscriptions | Fahlawy AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#258cf4",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .stripe-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 px-6 py-3 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Fahlawy AI</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:border-slate-800 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-semibold text-slate-900 dark:text-white">Ahmed Fahlawy</p>
+<p class="text-[10px] text-slate-500">Admin</p>
+</div>
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqj4hW6rqjIaqq1dnK1KeyDSXPbjUjVomCKwehYSNMzf8KR7NQeUrQpZGcPSeuFUEnuqOChKMOXk83Z977pyV_PvUHfWPiOvcLNW4r1xDl56o6fA3o3Cm11RxHYvPS0TL42gCBsUNvhezr_SAWwjezwa1asdSiWWowQ1t2M-bwQTtJ6B2KauTQnDEC73ViF04l3Z6WYZn8s13vScoPwppUjTZDINzErr42kvrX4IEZe0_WHhte8N_OdFG-ke2Ea9QYWyMhIAAMH2Sj"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- Sidebar -->
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 hidden md:flex flex-col p-4 gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="/dashboard">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="/agent-editor">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+<span class="text-sm font-medium">AI Agents</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded bg-primary/10 text-primary transition-all" href="/billing">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="text-sm font-medium">Billing</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<div class="mt-auto p-4 rounded-xl bg-slate-100 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+<p class="text-xs font-bold text-slate-900 dark:text-white mb-1">Need help?</p>
+<p class="text-[11px] text-slate-500 mb-3">Check our documentation for API integration.</p>
+<button class="text-xs text-primary font-bold flex items-center gap-1">
+                        View Docs <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto p-6 md:p-10 max-w-6xl mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-10">
+<h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Billing &amp; Subscriptions</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-2">Manage your plan, track usage, and view your billing history.</p>
+</div>
+<!-- Current Plan Card -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<div class="lg:col-span-2 stripe-card rounded-xl p-6 flex flex-col justify-between bg-white dark:bg-slate-900/40">
+<div class="flex justify-between items-start mb-6">
+<div>
+<span class="px-2 py-1 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Current Plan</span>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">Pro Monthly</h3>
+<p class="text-slate-500 text-sm mt-1">Next payment of $49.00 on Nov 12, 2023</p>
+</div>
+<div class="text-right">
+<p class="text-3xl font-black text-slate-900 dark:text-white">$49<span class="text-sm font-normal text-slate-500">/mo</span></p>
+</div>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="bg-primary hover:bg-primary/90 text-white text-sm font-bold py-2 px-6 rounded-lg transition-colors">
+                                Upgrade Plan
+                            </button>
+<button class="bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white text-sm font-bold py-2 px-6 rounded-lg transition-colors">
+                                Manage Subscription
+                            </button>
+</div>
+</div>
+<div class="stripe-card rounded-xl p-6 bg-white dark:bg-slate-900/40 flex flex-col justify-center relative overflow-hidden">
+<div class="absolute -right-4 -top-4 opacity-10">
+<span class="material-symbols-outlined text-8xl text-primary">credit_card</span>
+</div>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Payment Method</p>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-8 bg-slate-100 dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 flex items-center justify-center font-bold text-slate-400 text-[10px]">
+                                VISA
+                            </div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Visa ending in 4242</p>
+<p class="text-xs text-slate-500">Expires 12/26</p>
+</div>
+</div>
+<button class="text-primary text-xs font-bold flex items-center gap-1 hover:underline">
+                            Edit details <span class="material-symbols-outlined text-xs">edit</span>
+</button>
+</div>
+</div>
+<!-- Usage Meters -->
+<div class="mb-12">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                        Usage this month
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Meter 1 -->
+<div class="stripe-card rounded-xl p-6 bg-white dark:bg-slate-900/40">
+<div class="flex justify-between items-center mb-4">
+<p class="text-sm font-semibold text-slate-700 dark:text-slate-300">Call Minutes</p>
+<p class="text-sm font-bold text-slate-900 dark:text-white">840 / 1,000 <span class="text-xs font-normal text-slate-500">mins</span></p>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 84%"></div>
+</div>
+<p class="text-[11px] text-slate-500 mt-3">You have used 84% of your monthly allowance. We'll notify you at 90%.</p>
+</div>
+<!-- Meter 2 -->
+<div class="stripe-card rounded-xl p-6 bg-white dark:bg-slate-900/40">
+<div class="flex justify-between items-center mb-4">
+<p class="text-sm font-semibold text-slate-700 dark:text-slate-300">AI Agents</p>
+<p class="text-sm font-bold text-slate-900 dark:text-white">3 / 5 <span class="text-xs font-normal text-slate-500">active</span></p>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 60%"></div>
+</div>
+<p class="text-[11px] text-slate-500 mt-3">You can create 2 more agents on your current plan.</p>
+</div>
+</div>
+</div>
+<!-- Billing History -->
+<div class="mb-10">
+<div class="flex justify-between items-end mb-6">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                            Billing History
+                        </h2>
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+                            Download all <span class="material-symbols-outlined text-xs">download</span>
+</button>
+</div>
+<div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
+<table class="w-full text-left text-sm border-collapse">
+<thead class="bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800">
+<tr>
+<th class="px-6 py-4 font-semibold text-slate-700 dark:text-slate-300 uppercase text-[10px] tracking-wider">Date</th>
+<th class="px-6 py-4 font-semibold text-slate-700 dark:text-slate-300 uppercase text-[10px] tracking-wider">Invoice</th>
+<th class="px-6 py-4 font-semibold text-slate-700 dark:text-slate-300 uppercase text-[10px] tracking-wider">Amount</th>
+<th class="px-6 py-4 font-semibold text-slate-700 dark:text-slate-300 uppercase text-[10px] tracking-wider">Status</th>
+<th class="px-6 py-4 font-semibold text-slate-700 dark:text-slate-300 uppercase text-[10px] tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-900/20">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">Oct 12, 2023</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">INV-2023-010</td>
+<td class="px-6 py-4 text-slate-900 dark:text-white">$49.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-400">Paid</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">Sep 12, 2023</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">INV-2023-009</td>
+<td class="px-6 py-4 text-slate-900 dark:text-white">$49.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-400">Paid</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">Aug 12, 2023</td>
+<td class="px-6 py-4 font-medium text-slate-900 dark:text-white">INV-2023-008</td>
+<td class="px-6 py-4 text-slate-900 dark:text-white">$29.00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-400">Paid</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Features/Upgrade Teaser -->
+<div class="stripe-card rounded-xl p-8 bg-gradient-to-br from-primary/5 to-transparent border-primary/20 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="max-w-md">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Unlock Enterprise Capabilities</h3>
+<p class="text-sm text-slate-500 leading-relaxed">Get unlimited AI agents, custom voice cloning, and priority 24/7 support with our Enterprise plan.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-primary/20 transition-all transform hover:-translate-y-0.5">
+                            Contact Sales
+                        </button>
+<a class="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Compare Plans</a>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</body></html>

@@ -83,9 +83,17 @@ async def test_greeting():
 
 
 @router.post("/test/chat")
-async def test_chat(phone: str, message: str):
+async def test_chat(phone: str, message: str, dialect: str = None, instructions: str = None):
     """
     Test endpoint to simulate a chat
     """
-    result = sales_agent.get_response(phone, message)
+    result = sales_agent.get_response(phone, message, dialect=dialect, instructions=instructions)
     return result
+
+@router.post("/agent/config")
+async def update_agent_config(dialect: str = None, instructions: str = None):
+    """
+    Update the global agent configuration
+    """
+    sales_agent.update_config(dialect=dialect, instructions=instructions)
+    return {"status": "success", "config": sales_agent.config}

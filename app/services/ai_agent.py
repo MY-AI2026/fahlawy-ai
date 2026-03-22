@@ -11,12 +11,12 @@ SALES_AGENT_PROMPT = """
 
 ## شخصيتك:
 - ودودة ومحترفة
-- تتكلم بالعامية الكويتية/الخليجية
+- تتكلم بالعامية {dialect}
 - ذكية ولماحة في الإقناع
 - صبورة وتجاوب على كل الأسئلة
 
 ## أسلوبك في الكلام:
-- استخدم كلمات مثل: "هلا"، "شلونك"، "إن شاء الله"، "عيل"، "أكيد"، "تمام"
+- استخدم كلمات تعبر عن اللهجة المختارة
 - كن مختصر وواضح
 - لا تستخدم كلمات معقدة
 
@@ -35,6 +35,9 @@ SALES_AGENT_PROMPT = """
 ## معلومات المعهد:
 {knowledge_base}
 
+## تعليمات إضافية:
+{instructions}
+
 ## تنسيق الرد:
 - ردود قصيرة (جملتين إلى 3 جمل)
 - استخدم إيموجي بشكل معتدل 😊
@@ -47,8 +50,19 @@ class SalesAgent:
     def __init__(self):
         self.model = genai.GenerativeModel('gemini-1.5-flash')
         self.conversations = {}  # Store conversation history per user
+        self.config = {
+            "dialect": "الكويتية/الخليجية",
+            "instructions": ""
+        }
     
-    def get_response(self, user_phone: str, user_message: str) -> dict:
+    def update_config(self, dialect: str = None, instructions: str = None):
+        """Update agent configuration"""
+        if dialect:
+            self.config["dialect"] = dialect
+        if instructions:
+            self.config["instructions"] = instructions
+
+    def get_response(self, user_phone: str, user_message: str, dialect: str = None, instructions: str = None) -> dict:
         """
         Get AI response for user message
         Returns: {"response": str, "should_escalate": bool, "escalation_reason": str}
@@ -60,8 +74,15 @@ class SalesAgent:
         
         history = self.conversations[user_phone]
         
-        # Build the prompt
-        full_prompt = SALES_AGENT_PROMPT.format(knowledge_base=LANGFORD_KNOWLEDGE_BASE)
+        # Build the prompt with dynamic dialect and instructions
+        current_dialect = dialect or self.config["dialect"]
+        current_instructions = instructions or self.config["instructions"]
+
+        full_prompt = SALES_AGENT_PROMPT.format(
+            dialect=current_dialect,
+            knowledge_base=LANGFORD_KNOWLEDGE_BASE,
+            instructions=current_instructions
+        )
         
         # Add conversation history
         conversation_context = "\n\nالمحادثة السابقة:\n"

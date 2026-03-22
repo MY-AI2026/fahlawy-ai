@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Developer API Portal | Fahlawy AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            950: '#020617',
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                            400: '#94a3b8',
+                            200: '#e2e8f0',
+                        },
+                        blue: {
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        }
+                    },
+                    fontFamily: {
+                        "headline": ["Public Sans", "sans-serif"],
+                        "body": ["Public Sans", "sans-serif"],
+                        "label": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 antialiased font-body">
+<!-- TopNavBar -->
+<nav class="flex justify-between items-center px-6 h-16 w-full fixed top-0 z-50 bg-slate-950 dark:bg-slate-950 border-b border-slate-800 font-sans antialiased flat no shadows">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tight text-white">Fahlawy AI</span>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-400 hover:text-slate-200 transition-colors" href="#">Documentation</a>
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1" href="/api-portal">API Reference</a>
+<a class="text-slate-400 hover:text-slate-200 transition-colors" href="#">Status</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-3 py-1 border border-slate-700 rounded-lg text-sm text-slate-400 hover:bg-slate-900 transition-all">
+<span class="material-symbols-outlined text-sm">language</span>
+<span>English</span>
+<span class="text-slate-600">|</span>
+<span class="font-medium">العربية</span>
+</button>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:bg-slate-900 p-2 rounded-full transition-all">notifications</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:bg-slate-900 p-2 rounded-full transition-all">settings</span>
+<div class="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center overflow-hidden border border-slate-700">
+<img class="w-full h-full object-cover" data-alt="User profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmHt1DhEu6P3omyGwf_xVBkCgtSiFLRpw3BxnQzT6-nrfajYX5QRMFpmYgwVqoj8bo8W239tOAPsSQ7AVIbF2XZCax1UCV0t4D4s9PO4uoQ5us5L-CN8-F8XCD2TRlr-Wr_uTuGRU5eiUKdnxnB6b_5ONsj2DZKUIyBrIXQnUogneGlftgTd2hhyqxtJG56x0amAOGMK5na540FPR9YTB8-CTsf9DROT7gV7HzJTBYuxE6t3JRsp9od3HcXOIpdNqhvNIBkyzOFA0T"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col z-40 bg-slate-900 dark:bg-slate-900 border-r border-slate-800 shadow-xl pt-16">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white font-black text-xl">F</div>
+<div>
+<div class="text-lg font-black text-white leading-tight">Fahlawy AI</div>
+<div class="text-xs text-slate-500 uppercase tracking-wider">Enterprise SaaS</div>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="/dashboard">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="/call-logs">
+<span class="material-symbols-outlined">analytics</span>
+<span>Call Analysis</span>
+</a>
+<a class="flex items-center gap-3 bg-blue-600/10 text-blue-400 border-r-4 border-blue-500 px-4 py-3 transition-all text-sm font-medium" href="/api-portal">
+<span class="material-symbols-outlined">code</span>
+<span>API Portal</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="/tenants">
+<span class="material-symbols-outlined">corporate_fare</span>
+<span>Tenants</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="/integrations">
+<span class="material-symbols-outlined">hub</span>
+<span>CRM Hub</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-slate-800">
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 text-slate-400 px-4 py-3 hover:bg-slate-800 hover:text-white transition-all text-sm font-medium" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pl-64 pt-16 min-h-screen">
+<div class="p-8 max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="mb-10 flex justify-between items-end">
+<div>
+<h1 class="text-3xl font-extrabold text-white tracking-tight mb-2">API Portal</h1>
+<p class="text-slate-400">Manage your developer credentials and monitor integration performance.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-lg font-semibold text-sm flex items-center gap-2 transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                        Create New Key
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Dashboard -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8">
+<!-- Usage Metrics Card -->
+<div class="md:col-span-8 glass-card rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400">show_chart</span>
+                            Request Volume
+                        </h3>
+<select class="bg-slate-800 border-none text-xs rounded-lg text-slate-300 focus:ring-0">
+<option>Last 24 Hours</option>
+<option>Last 7 Days</option>
+</select>
+</div>
+<div class="h-48 w-full flex items-end gap-1 mb-4">
+<div class="flex-1 bg-blue-600/20 rounded-t h-[40%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-600/20 rounded-t h-[55%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-600/20 rounded-t h-[35%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-600/20 rounded-t h-[70%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-600/20 rounded-t h-[85%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-600/40 rounded-t h-[60%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-500 rounded-t h-[95%] hover:bg-blue-400 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-600/20 rounded-t h-[45%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-600/20 rounded-t h-[50%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-600/20 rounded-t h-[30%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-600/20 rounded-t h-[20%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+<div class="flex-1 bg-blue-600/20 rounded-t h-[40%] hover:bg-blue-500/40 transition-all cursor-pointer"></div>
+</div>
+<div class="flex justify-between text-[10px] text-slate-500 uppercase font-bold tracking-widest">
+<span>00:00</span>
+<span>06:00</span>
+<span>12:00</span>
+<span>18:00</span>
+<span>Current</span>
+</div>
+</div>
+<!-- Status Mini Cards -->
+<div class="md:col-span-4 grid grid-rows-2 gap-6">
+<div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+<div class="flex justify-between">
+<span class="text-slate-400 text-sm font-medium">Avg. Latency</span>
+<span class="material-symbols-outlined text-green-400">bolt</span>
+</div>
+<div>
+<div class="text-3xl font-black text-white">124ms</div>
+<div class="text-xs text-green-400 mt-1">↓ 12% from last hour</div>
+</div>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+<div class="flex justify-between">
+<span class="text-slate-400 text-sm font-medium">Error Rate</span>
+<span class="material-symbols-outlined text-red-400">error</span>
+</div>
+<div>
+<div class="text-3xl font-black text-white">0.04%</div>
+<div class="text-xs text-slate-500 mt-1">Within normal bounds</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- API Keys Management -->
+<div class="lg:col-span-2 space-y-6">
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-800 bg-slate-900/50 flex justify-between items-center">
+<h3 class="font-bold text-white">Active API Keys</h3>
+<span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">2 / 5 Used</span>
+</div>
+<div class="divide-y divide-slate-800">
+<!-- Key Item -->
+<div class="p-6 flex items-center justify-between hover:bg-slate-800/30 transition-colors">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-blue-500/10 rounded-lg">
+<span class="material-symbols-outlined text-blue-400">key</span>
+</div>
+<div>
+<div class="text-white font-semibold">Production_Main</div>
+<div class="text-xs font-mono text-slate-500">fk_live_••••••••••••4k92</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<div class="text-xs text-slate-500">Created</div>
+<div class="text-sm text-slate-300">Oct 12, 2023</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-all">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 text-red-400 hover:text-red-300 hover:bg-red-400/10 rounded transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Key Item -->
+<div class="p-6 flex items-center justify-between hover:bg-slate-800/30 transition-colors">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-slate-700/30 rounded-lg">
+<span class="material-symbols-outlined text-slate-400">key</span>
+</div>
+<div>
+<div class="text-white font-semibold">Development_Sandbox</div>
+<div class="text-xs font-mono text-slate-500">fk_test_••••••••••••x188</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<div class="text-xs text-slate-500">Created</div>
+<div class="text-sm text-slate-300">Nov 05, 2023</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded transition-all">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-2 text-red-400 hover:text-red-300 hover:bg-red-400/10 rounded transition-all">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Webhooks Section -->
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-800 bg-slate-900/50 flex justify-between items-center">
+<h3 class="font-bold text-white">Webhook Endpoints</h3>
+<button class="text-xs text-blue-400 hover:underline">Add Endpoint</button>
+</div>
+<div class="p-12 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-slate-500 text-3xl">webhook</span>
+</div>
+<h4 class="text-white font-semibold mb-1">No Webhooks Configured</h4>
+<p class="text-slate-500 text-sm max-w-xs">Receive real-time notifications about call completions, transcription events, and credit balance.</p>
+</div>
+</div>
+</div>
+<!-- Code Snippets & Quick Start -->
+<div class="space-y-6">
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-800 bg-slate-900/50">
+<h3 class="font-bold text-white">Quick Start</h3>
+</div>
+<div class="p-0">
+<div class="flex border-b border-slate-800">
+<button class="flex-1 py-3 text-xs font-bold uppercase tracking-widest text-blue-400 border-b-2 border-blue-400">Python</button>
+<button class="flex-1 py-3 text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-300">JavaScript</button>
+</div>
+<div class="p-4 bg-slate-950 font-mono text-[11px] leading-relaxed">
+<div class="text-slate-500 mb-2"># Install: pip install fahlawy-ai</div>
+<div><span class="text-purple-400">import</span> fahlawy</div>
+<div class="mt-2">client = fahlawy.<span class="text-yellow-200">Client</span>(</div>
+<div class="pl-4">api_key=<span class="text-green-400">"YOUR_API_KEY"</span></div>
+<div>)</div>
+<div class="mt-4">response = client.calls.<span class="text-yellow-200">create</span>(</div>
+<div class="pl-4">to=<span class="text-green-400">"+971501234567"</span>,</div>
+<div class="pl-4">agent_id=<span class="text-green-400">"sales_assistant_v2"</span></div>
+<div>)</div>
+<div class="mt-4 text-slate-500">print(response.id)</div>
+</div>
+<div class="p-4 bg-slate-900/80 flex justify-between items-center">
+<span class="text-xs text-slate-500">v2.4.0 Stable</span>
+<button class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+                                    Copy Code
+                                </button>
+</div>
+</div>
+</div>
+<!-- Documentation Links -->
+<div class="glass-card rounded-xl p-6">
+<h3 class="font-bold text-white mb-4">Resources</h3>
+<ul class="space-y-4">
+<li>
+<a class="flex items-center justify-between group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-blue-400 transition-colors">description</span>
+<span class="text-sm text-slate-300">REST API Docs</span>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-slate-400 transition-all text-sm">open_in_new</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-blue-400 transition-colors">model_training</span>
+<span class="text-sm text-slate-300">LLM Tuning Guide</span>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-slate-400 transition-all text-sm">open_in_new</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-blue-400 transition-colors">shield</span>
+<span class="text-sm text-slate-300">Auth &amp; Security</span>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-slate-400 transition-all text-sm">open_in_new</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Support FAB -->
+<div class="fixed bottom-6 right-6 z-50">
+<button class="w-14 h-14 bg-blue-600 hover:bg-blue-500 text-white rounded-full shadow-2xl flex items-center justify-center transition-all active:scale-90 hover:shadow-blue-500/20">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">chat</span>
+</button>
+</div>
+</body></html>
