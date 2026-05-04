@@ -13,7 +13,7 @@ class WhatsAppService:
     def send_message(self, to_number: str, message: str) -> dict:
         """
         Send WhatsApp message
-        to_number: phone number with country code (e.g., +96551600140)
+        to_number: phone number with country code (e.g., +201001234567)
         """
         try:
             # Ensure proper format
