@@ -11,7 +11,7 @@ import os
 # Create FastAPI app
 app = FastAPI(
     title=settings.APP_NAME,
-    description="AI Sales Agent for Langford International Institute - Voice & WhatsApp",
+    description="AI Sales Agent for Orchid Developments - Outbound voice + WhatsApp demo",
     version="1.0.0"
 )
 
