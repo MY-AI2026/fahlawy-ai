@@ -72,6 +72,68 @@ async def health_check():
     return {"status": "healthy", "services": ["whatsapp", "voice", "ai", "dashboard"]}
 
 
+@app.get("/api/preflight")
+async def preflight():
+    """
+    Pre-demo readiness check. Returns the status of every dependency
+    Mariam needs to make a successful outbound call.
+    """
+    import httpx
+    from app.services.elevenlabs import elevenlabs_service
+    from app.services.voice import voice_service
+
+    report: dict = {"ready": True, "checks": {}}
+
+    def check(name: str, ok: bool, detail: str = ""):
+        report["checks"][name] = {"ok": ok, "detail": detail}
+        if not ok:
+            report["ready"] = False
+
+    # Required env vars
+    check("env.PUBLIC_URL", bool(settings.PUBLIC_URL), settings.PUBLIC_URL or "missing")
+    check("env.TWILIO_ACCOUNT_SID", bool(settings.TWILIO_ACCOUNT_SID))
+    check("env.TWILIO_API_KEY", bool(settings.TWILIO_API_KEY))
+    check("env.TWILIO_API_SECRET", bool(settings.TWILIO_API_SECRET))
+    check("env.TWILIO_PHONE_NUMBER", bool(settings.TWILIO_PHONE_NUMBER), settings.TWILIO_PHONE_NUMBER or "")
+    check("env.GOOGLE_API_KEY", bool(settings.GOOGLE_API_KEY))
+    check("env.ELEVENLABS_API_KEY", bool(settings.ELEVENLABS_API_KEY))
+    check("env.ELEVENLABS_VOICE_ID", bool(settings.ELEVENLABS_VOICE_ID), settings.ELEVENLABS_VOICE_ID or "")
+
+    # Twilio reachability
+    try:
+        acc = voice_service.client.api.v2010.accounts(settings.TWILIO_ACCOUNT_SID).fetch()
+        check("twilio.account", acc.status == "active", f"status={acc.status}")
+    except Exception as e:
+        check("twilio.account", False, str(e)[:120])
+
+    # ElevenLabs reachability + voice exists
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            r = await client.get(
+                f"{elevenlabs_service.base_url}/voices/{settings.ELEVENLABS_VOICE_ID}",
+                headers={"xi-api-key": settings.ELEVENLABS_API_KEY},
+            )
+            check(
+                "elevenlabs.voice",
+                r.status_code == 200,
+                f"status={r.status_code}",
+            )
+    except Exception as e:
+        check("elevenlabs.voice", False, str(e)[:120])
+
+    # Gemini reachability (very small request)
+    try:
+        import google.generativeai as genai
+        genai.configure(api_key=settings.GOOGLE_API_KEY)
+        m = genai.GenerativeModel("gemini-1.5-flash")
+        m.generate_content("ping", generation_config=genai.types.GenerationConfig(max_output_tokens=4))
+        check("gemini.generate", True, "ok")
+    except Exception as e:
+        check("gemini.generate", False, str(e)[:120])
+
+    return report
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
