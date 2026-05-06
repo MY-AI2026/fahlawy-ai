@@ -19,10 +19,14 @@ class Settings:
     
     # ElevenLabs (Text-to-Speech)
     ELEVENLABS_API_KEY: str = os.getenv("ELEVENLABS_API_KEY")
+    # Default voice "Sarah" works for Arabic via multilingual_v2.
+    # For best Egyptian-Arabic feel, set ELEVENLABS_VOICE_ID to a custom Arabic
+    # voice from your ElevenLabs voice library.
     ELEVENLABS_VOICE_ID: str = os.getenv("ELEVENLABS_VOICE_ID", "EXAVITQu4vr4xnSDxMaL")
-    
+    ELEVENLABS_MODEL_ID: str = os.getenv("ELEVENLABS_MODEL_ID", "eleven_multilingual_v2")
+
     # App
-    APP_NAME: str = os.getenv("APP_NAME", "Langford AI Sales Agent")
+    APP_NAME: str = os.getenv("APP_NAME", "Orchid Developments AI Sales Agent")
     DEBUG: bool = os.getenv("DEBUG", "True").lower() == "true"
     
     # Escalation
